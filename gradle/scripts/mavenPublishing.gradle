@@ -1,0 +1,18 @@
+/*
+ * mtrace-api-client
+ * Distributed under MIT licence
+ */
+apply plugin: "maven-publish"
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = group
+            version = project.version
+            artifactId = project.name
+
+            from components.java
+            artifact sourcesJar
+        }
+    }
+}

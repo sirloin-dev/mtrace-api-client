@@ -1,0 +1,9 @@
+/*
+ * mtrace-api-client
+ * Distributed under MIT licence
+ */
+apply plugin: "jacoco"
+
+jacoco {
+    toolVersion = "$version_jacoco"
+}

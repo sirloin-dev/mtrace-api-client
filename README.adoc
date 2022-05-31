@@ -1,0 +1,30 @@
+= mtrace-api-client for JVM
+Sirloin Dev
+// Metadata:
+:description: 대한민국 농림수산식품부
+:keywords: java, kotlin, jvm
+// Settings:
+:doctype: book
+:toc: left
+:toclevels: 4
+:sectlinks:
+:icons: font
+
+[[overview]]
+== 들어가기
+
+이 소프트웨어는 대한민국 농림수산식품부의 link:https://mtrace.go.kr/openService.jsp[축산물 이력제 API] 를 좀 더 간편하게 쓸 수 있도록 구현한 클라이언트입니다.
+
+[[requirements]]
+== 최소 사양
+
+이 소프트웨어를 실행하기 위한 최소 사양은 다음과 같습니다.
+
+- OpenJDK 또는 호환되는 Java Virtual Machine 버전 17 이상
+
+[[licencing]]
+== 라이센스
+
+이 소프트웨어는 MIT 라이센스를 적용받습니다. 라이센스에 대한 상세한 내용은 link:LICENCE.adoc[] 파일을 참고하세요.
+
+한국어 번역본은 link:https://www.olis.or.kr/license/Detailselect.do?lType=spdx&lId=1006[한국저작권위원회 라이선스 분류] 페이지에서 확인하실 수 있습니다.

@@ -1,0 +1,7 @@
+/*
+ * mtrace-api-client
+ * Distributed under MIT licence
+ */
+rootProject.name = "mtrace-api-client"
+
+include ":app"
