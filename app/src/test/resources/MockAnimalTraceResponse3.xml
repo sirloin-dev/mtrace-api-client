@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <header>
+        <resultCode>00</resultCode>
+        <resultMsg>NORMAL SERVICE.</resultMsg>
+    </header>
+    <notice>
+        <rows/>
+    </notice>
+    <body>
+        <items>
+            <item>
+                <butcheryPlaceAddr>경기도 부천시 송내대로518번길</butcheryPlaceAddr>
+                <butcheryPlaceNm>농협 부천축산물공판장</butcheryPlaceNm>
+                <butcheryYmd>20220523</butcheryYmd>
+                <gradeNm>2</gradeNm>
+                <infoType>3</infoType>
+                <inspectPassYn>합격</inspectPassYn>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+        </items>
+    </body>
+</response>

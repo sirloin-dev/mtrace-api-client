@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <header>
+        <resultCode>00</resultCode>
+        <resultMsg>NORMAL SERVICE.</resultMsg>
+    </header>
+    <notice>
+        <rows/>
+    </notice>
+    <body>
+        <items>
+            <item>
+                <birthYmd>20200212</birthYmd>
+                <cattleNo>410002147460101</cattleNo>
+                <farmNo>292956</farmNo>
+                <farmUniqueNo>110672</farmUniqueNo>
+                <infoType>1</infoType>
+                <lsTypeNm>한우</lsTypeNm>
+                <monthDiff>0</monthDiff>
+                <sexNm>거세</sexNm>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <farmAddr>전라남도 강진군 군동면 군장로</farmAddr>
+                <farmNo>335453</farmNo>
+                <farmerNm>오동군</farmerNm>
+                <infoType>2</infoType>
+                <regType>전산등록</regType>
+                <regYmd>20200212</regYmd>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <farmAddr>충청남도 당진시 순성면 느락길</farmAddr>
+                <farmNo>352143</farmNo>
+                <farmerNm>문태분</farmerNm>
+                <infoType>2</infoType>
+                <regType>양수</regType>
+                <regYmd>20201013</regYmd>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <farmAddr>인천광역시 강화군 송해면</farmAddr>
+                <farmNo>418622</farmNo>
+                <farmerNm>강은광</farmerNm>
+                <infoType>2</infoType>
+                <regType>양수</regType>
+                <regYmd>20201014</regYmd>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <farmAddr>인천광역시 강화군 송해면 홍의길</farmAddr>
+                <farmNo>292956</farmNo>
+                <farmerNm>강창구</farmerNm>
+                <infoType>2</infoType>
+                <regType>양수</regType>
+                <regYmd>20211213</regYmd>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <farmAddr>인천광역시 강화군 송해면 홍의길</farmAddr>
+                <farmNo>292956</farmNo>
+                <farmerNm>강창구</farmerNm>
+                <infoType>2</infoType>
+                <regType>도축출하</regType>
+                <regYmd>20220523</regYmd>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <butcheryPlaceAddr>경기도 부천시 송내대로518번길</butcheryPlaceAddr>
+                <butcheryPlaceNm>농협 부천축산물공판장</butcheryPlaceNm>
+                <butcheryYmd>20220523</butcheryYmd>
+                <gradeNm>2</gradeNm>
+                <infoType>3</infoType>
+                <inspectPassYn>합격</inspectPassYn>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <infoType>4</infoType>
+                <processPlaceAddr>경기도 안산시 단원구 화정동 꽃우물길</processPlaceAddr>
+                <processPlaceNm>농업회사법인㈜성신종합유통</processPlaceNm>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+            <item>
+                <infoType>5</infoType>
+                <injectionYmd>20220415</injectionYmd>
+                <injectiondayCnt>접종 후 38일 경과</injectiondayCnt>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+                <vaccineorder>6차</vaccineorder>
+            </item>
+            <item>
+                <infoType>7</infoType>
+                <inspectDt>20211209</inspectDt>
+                <inspectYn>음성</inspectYn>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+        </items>
+    </body>
+</response>

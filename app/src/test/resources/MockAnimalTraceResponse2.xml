@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <header>
+        <resultCode>00</resultCode>
+        <resultMsg>NORMAL SERVICE.</resultMsg>
+    </header>
+    <notice>
+        <rows/>
+    </notice>
+    <body>
+        <items>
+            <item>
+                <birthYmd>20200212</birthYmd>
+                <cattleNo>410002147460101</cattleNo>
+                <farmNo>292956</farmNo>
+                <farmUniqueNo>110672</farmUniqueNo>
+                <infoType>1</infoType>
+                <lsTypeNm>한우</lsTypeNm>
+                <monthDiff>0</monthDiff>
+                <sexNm>거세</sexNm>
+                <traceNoType>CATTLE|CATTLE_NO</traceNoType>
+            </item>
+        </items>
+    </body>
+</response>
