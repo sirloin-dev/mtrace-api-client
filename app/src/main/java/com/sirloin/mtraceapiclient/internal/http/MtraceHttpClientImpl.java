@@ -15,24 +15,34 @@ import java.net.URL;
 import java.util.function.Function;
 
 final class MtraceHttpClientImpl implements MtraceHttpClient {
+    /**
+     * 성공 상태값입니다.
+     */
     public static final int HTTP_OK = 200;
+
+    /**
+     * 성공 상태 2xx중 제일 큰 상태값입니다.
+     */
     public static final int HTTP_OK_END = 299;
-    // Bean 아니므로 PMD 체크를 무시합니다.
+
+    /**
+     * URL을 생성하는 함수입니다.
+     */
     @SuppressWarnings("PMD.BeanMembersShouldSerialize")
     private final Function<String, URL> urlFactory;
 
-    MtraceHttpClientImpl(Function<String, URL> urlFactory) {
-        this.urlFactory = urlFactory;
+    MtraceHttpClientImpl(final Function<String, URL> urlFun) {
+        this.urlFactory = urlFun;
     }
 
     @Override
-    public MtraceHttpResponse get(MtraceHttpRequest request) throws Exception {
+    public MtraceHttpResponse get(final MtraceHttpRequest request) throws Exception {
         HttpURLConnection conn = this.connect(request.url());
         conn.setRequestMethod(MtraceHttpMethod.GET.name());
         return this.httpResponse(conn);
     }
 
-    private HttpURLConnection connect(String apiUrl) throws Exception {
+    private HttpURLConnection connect(final String apiUrl) throws Exception {
         try {
             return (HttpURLConnection) urlFactory.apply(apiUrl).openConnection();
         } catch (MalformedURLException e) {
@@ -42,7 +52,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
-    private MtraceHttpResponse httpResponse(HttpURLConnection con) throws Exception {
+    private MtraceHttpResponse httpResponse(final HttpURLConnection con) throws Exception {
         try {
             return this.call(con);
         } catch (Exception e) {
@@ -52,7 +62,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
-    private MtraceHttpResponse call(HttpURLConnection con) throws Exception {
+    private MtraceHttpResponse call(final HttpURLConnection con) throws Exception {
         if (HTTP_OK <= con.getResponseCode() && con.getResponseCode() <= HTTP_OK_END) {
             return new MtraceHttpResponse(
                     MtraceHttpMethod.valueOf(con.getRequestMethod()),
@@ -68,7 +78,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
-    private ByteArrayInputStream copyInputStream(InputStream inputStream) throws Exception {
+    private ByteArrayInputStream copyInputStream(final InputStream inputStream) throws Exception {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         inputStream.transferTo(baos);
         return new ByteArrayInputStream(baos.toByteArray());

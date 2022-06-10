@@ -8,8 +8,17 @@ import java.net.URL;
 import java.util.function.Function;
 
 public interface MtraceHttpClient {
+    /**
+     * Http Get 통신 메서드입니다.
+     * @param request
+     * @return MtraceHttpResponse
+     */
     MtraceHttpResponse get(MtraceHttpRequest request) throws Exception;
 
+    /**
+     * 해당 인터페이스의 기본 구현체입니다.
+     * @return MtraceHttpClientImpl
+     */
     static MtraceHttpClient newInstance() {
         return new MtraceHttpClientImpl(defaultUrlFactory());
     }
