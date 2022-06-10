@@ -1,4 +1,4 @@
-package internal.http.model;
+package com.sirloin.mtraceapiclient.internal.http.model;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;

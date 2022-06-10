@@ -1,4 +1,4 @@
-package internal.http.exception;
+package com.sirloin.mtraceapiclient.internal.http.exception;
 
 
 import javax.validation.constraints.NotNull;

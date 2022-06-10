@@ -1,8 +1,9 @@
-package internal.http;
+package com.sirloin.mtraceapiclient.internal.http;
 
-import internal.http.exception.MtraceHttpConnectException;
-import internal.http.model.*;
-
+import com.sirloin.mtraceapiclient.internal.http.exception.MtraceHttpConnectException;
+import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpMethod;
+import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
+import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

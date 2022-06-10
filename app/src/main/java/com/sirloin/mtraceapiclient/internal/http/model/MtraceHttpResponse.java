@@ -1,4 +1,4 @@
-package internal.http.model;
+package com.sirloin.mtraceapiclient.internal.http.model;
 
 import javax.validation.constraints.NotNull;
 import java.io.InputStream;

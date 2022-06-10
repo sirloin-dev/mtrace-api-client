@@ -1,5 +1,7 @@
-package internal.http;
+package com.sirloin.mtraceapiclient.internal.http;
 
+import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
+import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 import internal.http.model.*;
 
 import java.net.MalformedURLException;
