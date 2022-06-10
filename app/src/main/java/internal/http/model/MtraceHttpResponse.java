@@ -1,4 +1,4 @@
-package util.http.model;
+package internal.http.model;
 
 import javax.validation.constraints.NotNull;
 import java.io.InputStream;
