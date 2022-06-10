@@ -1,8 +1,8 @@
 = mtrace-api-client for JVM
 Sirloin Dev
 // Metadata:
-:description: 대한민국 농림수산식품부
-:keywords: java, kotlin, jvm
+:description: 대한민국 농림수산식품부 축산물 이력제 API Client
+:keywords: java, jvm
 // Settings:
 :doctype: book
 :toc: left
