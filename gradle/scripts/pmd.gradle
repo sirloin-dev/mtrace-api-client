@@ -1,0 +1,5 @@
+/*
+ * mtrace-api-client
+ * Distributed under MIT licence
+ */
+apply plugin: "pmd"

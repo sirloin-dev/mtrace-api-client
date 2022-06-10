@@ -1,0 +1,9 @@
+/*
+ * mtrace-api-client
+ * Distributed under MIT licence
+ */
+apply plugin: "checkstyle"
+
+checkstyle {
+    configFile = new File("$rootDir/gradle/scripts/checkstyle/sun_checks.xml")
+}

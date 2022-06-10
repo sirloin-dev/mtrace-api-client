@@ -17,6 +17,8 @@ import java.util.function.Function;
 final class MtraceHttpClientImpl implements MtraceHttpClient {
     public static final int HTTP_OK = 200;
     public static final int HTTP_OK_END = 299;
+    // Bean 아니므로 PMD 체크를 무시합니다.
+    @SuppressWarnings("PMD.BeanMembersShouldSerialize")
     private final Function<String, URL> urlFactory;
 
     MtraceHttpClientImpl(Function<String, URL> urlFactory) {
