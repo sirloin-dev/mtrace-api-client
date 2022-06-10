@@ -18,7 +18,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
     public static final int HTTP_OK_END = 299;
     private final Function<String, URL> urlFactory;
 
-    public MtraceHttpClientImpl(Function<String, URL> urlFactory) {
+    MtraceHttpClientImpl(Function<String, URL> urlFactory) {
         this.urlFactory = urlFactory;
     }
 
