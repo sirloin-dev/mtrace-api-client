@@ -5,10 +5,7 @@ import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpMethod;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
