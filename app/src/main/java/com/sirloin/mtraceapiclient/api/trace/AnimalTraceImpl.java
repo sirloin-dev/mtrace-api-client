@@ -12,9 +12,8 @@ import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 import com.sirloin.mtraceapiclient.internal.xml.DocumentFactory;
-import com.sirloin.mtraceapiclient.internal.xml.ResponseXmlParserMixin;
+import com.sirloin.mtraceapiclient.internal.xml.MtraceXmlParserMixin;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -31,7 +30,7 @@ import java.util.*;
 /**
  * 통합 이력조회 서비스 인터페이스 구현체입니다.
  */
-public final class AnimalTraceImpl implements AnimalTrace, ResponseXmlParserMixin {
+public final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
 
     /**
      * 통합 이력조회 URL 입니다.
@@ -157,15 +156,9 @@ public final class AnimalTraceImpl implements AnimalTrace, ResponseXmlParserMixi
     private List<Element> mapToElements(final NodeList nodeList) {
         List<Element> elements = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); ++i) {
-            elements.add(toElement((nodeList.item(i))));
+            elements.add(asElement((nodeList.item(i))));
         }
         return elements;
-    }
-
-
-    private static String getAnimalNo(final NodeList nodeList) {
-        Node node = nodeList.item(0);
-        return node != null ? node.getTextContent() : null;
     }
 
     private static Instant ymdToInstant(final String ymdText) {
@@ -181,8 +174,8 @@ public final class AnimalTraceImpl implements AnimalTrace, ResponseXmlParserMixi
         Element element = elements.stream().findFirst().orElseThrow();
         return new AnimalInformation(
                 ymdToInstant(getText(element.getElementsByTagName("birthYmd"))),
-                getAnimalNo(element.getElementsByTagName("cattleNo")),
-                getAnimalNo(element.getElementsByTagName("pigNo")),
+                getTextOrNull(element.getElementsByTagName("cattleNo")),
+                getTextOrNull(element.getElementsByTagName("pigNo")),
                 getText(element.getElementsByTagName("farmNo")),
                 getText(element.getElementsByTagName("farmUniqueNo")),
                 Integer.parseInt(getText(element.getElementsByTagName(INFO_TYPE))),

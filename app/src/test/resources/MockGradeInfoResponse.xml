@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <header>
+        <resultCode>00</resultCode>
+        <resultMsg>NORMAL SERVICE.</resultMsg>
+    </header>
+    <notice>
+        <rows/>
+    </notice>
+    <body>
+        <items>
+            <item>
+                <abattAddr>경기도 부천시 오정구 송내대로 518번길 71</abattAddr>
+                <abattCode>0323</abattCode>
+                <abattDate>2022-05-23</abattDate>
+                <abattFno>215</abattFno>
+                <abattNm>농협경제지주회사(주) 부천축산물공판장</abattNm>
+                <abattTelNo>032-620-5000</abattTelNo>
+                <backfat>4</backfat>
+                <birthmonth>28</birthmonth>
+                <cattleNo>002147460101</cattleNo>
+                <costAmt>14011</costAmt>
+                <fatsak>3</fatsak>
+                <gradeCd>029010</gradeCd>
+                <gradeNm>2A</gradeNm>
+                <growth>2</growth>
+                <insfat>2</insfat>
+                <issueCnt>1</issueCnt>
+                <issueDate>2022-05-24</issueDate>
+                <issueNo>0323-05240157</issueNo>
+                <judgeBreedNm>한우</judgeBreedNm>
+                <judgeDate>2022-05-24</judgeDate>
+                <judgeKindCd>023001</judgeKindCd>
+                <judgeKindNm>소</judgeKindNm>
+                <judgeSexNm>거세</judgeSexNm>
+                <liveStockNm>소</liveStockNm>
+                <qgrade>2</qgrade>
+                <raterCode>15***</raterCode>
+                <raterNm>김**</raterNm>
+                <rea>77</rea>
+                <reqAddr>경기도 안산시 단원구 꽃우물길 86 (화정동)</reqAddr>
+                <reqComNm>농업회사법인(주)성신종합유통</reqComNm>
+                <reqRegNo>1408146695</reqRegNo>
+                <reqUserNm>박**</reqUserNm>
+                <tissue>2</tissue>
+                <weight>318</weight>
+                <wgrade>A</wgrade>
+                <windex>65.53</windex>
+                <yuksak>5</yuksak>
+            </item>
+        </items>
+    </body>
+</response>
