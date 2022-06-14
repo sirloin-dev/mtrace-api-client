@@ -4,6 +4,9 @@ import java.time.Instant;
 
 /**
  * 등급판정 정보입니다. 각 동물별 공통 정보를 취합한 모델입니다.
+ *
+ * java 8 호환을 위해 이렇게 구현했습니다. (추후 java8로 다운그레이드 예정이 되어있습니다.)
+ * 하지만 java 17 환경이라면 sealed interface 로 GradeInformation 의 하위타입을 확정지을 수 있습니다
  */
 public interface GradeInformation {
 
