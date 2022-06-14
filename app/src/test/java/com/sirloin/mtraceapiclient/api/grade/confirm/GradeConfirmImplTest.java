@@ -2,6 +2,7 @@ package com.sirloin.mtraceapiclient.api.grade.confirm;
 
 import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
 import com.sirloin.mtraceapiclient.api.grade.confirm.model.GradeConfirmInformation;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
@@ -20,6 +21,7 @@ class GradeConfirmImplTest {
     private static final String TEST_ANIMAL_NO = "002147460101";
     private static final String TEST_SERVICE_KEY = "";
 
+    @DisplayName("소 개체정보의 등급판정 결과를 조회합니다.")
     @Test
     void gradeConfirm() throws Exception {
         //given

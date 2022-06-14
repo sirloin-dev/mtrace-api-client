@@ -1,5 +1,6 @@
 package com.sirloin.mtraceapiclient.api.trace;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
 import com.sirloin.mtraceapiclient.api.trace.model.TraceResult;
@@ -15,6 +16,7 @@ class AnimalTraceImplTest {
 
     private AnimalTrace sut;
 
+    @DisplayName("통합이력정보를 조회합니다.")
     @Test
     void callTraceNoSearch() throws Exception {
         //given
@@ -39,6 +41,7 @@ class AnimalTraceImplTest {
         );
     }
 
+    @DisplayName("통합이력정보를 조회합니다. 1번 옵션(개체정보)의 정보만 가져옵니다. ")
     @Test
     void callTraceNoSearch_optionNo() throws Exception {
         //given
@@ -60,7 +63,7 @@ class AnimalTraceImplTest {
         );
     }
 
-
+    @DisplayName("통합이력정보를 조회합니다. 사업장번호로 검색후 3번 옵션(도축장)의 정보를 가져옵니다.")
     @Test
     void callTraceNoSearch_optionNo_and_corpNo() throws Exception {
         //given

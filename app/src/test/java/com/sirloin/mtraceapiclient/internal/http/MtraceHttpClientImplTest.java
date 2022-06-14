@@ -4,6 +4,7 @@ import com.sirloin.mtraceapiclient.internal.http.fixture.MockURL;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpMethod;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.net.MalformedURLException;
@@ -22,6 +23,7 @@ class MtraceHttpClientImplTest {
 
     private static final String TEST_URL = "https://testurl";
 
+    @DisplayName("Http get 요청 후 200응답을 받습니다.")
     @Test
     void Http_get_request_is_successful() throws Exception {
         //given
@@ -41,6 +43,7 @@ class MtraceHttpClientImplTest {
         );
     }
 
+    @DisplayName("Http get 요청 후 400응답을 받습니다.")
     @Test
     void Http_get_request_fails() throws Exception {
         //given
