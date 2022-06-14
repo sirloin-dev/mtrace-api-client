@@ -1,6 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace;
 
 import com.sirloin.mtraceapiclient.api.trace.model.TraceResult;
+import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
 
 
 /**
@@ -37,4 +38,12 @@ public interface AnimalTrace {
      * @return TraceResult 통합이력 조회 결과입니다 조회한 옵션값을 제외한 나머지 값은 Null로 리턴됩니다.
      */
     TraceResult traceNoSearch(String traceNo, String serviceKey, int optionNo, String corpNo) throws Exception;
+
+    /**
+     * AnimalTrace의 기본 구현체 생성 메서드입니다.
+     * @return AnimalTraceImpl
+     */
+    static AnimalTrace newInstance() {
+        return new AnimalTraceImpl(MtraceHttpClient.newInstance());
+    }
 }
