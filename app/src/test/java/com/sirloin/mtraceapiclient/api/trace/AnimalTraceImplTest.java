@@ -1,5 +1,6 @@
 package com.sirloin.mtraceapiclient.api.trace;
 
+import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
@@ -23,11 +24,12 @@ class AnimalTraceImplTest {
         sut = new AnimalTraceImpl(
                 new MockMtraceHttpClientImpl(
                         AnimalTraceImplTest.class.getResourceAsStream("/MockAnimalTraceResponse.xml")
-                )
+                ),
+                TEST_SERVICE_KEY
         );
 
         //when
-        TraceResult result = sut.traceNoSearch(TEST_TRACE_NO, TEST_SERVICE_KEY);
+        TraceResult result = sut.traceNoSearch(TEST_TRACE_NO);
 
         //then
         assertAll(
@@ -48,10 +50,11 @@ class AnimalTraceImplTest {
         sut = new AnimalTraceImpl(
                 new MockMtraceHttpClientImpl(
                         AnimalTraceImplTest.class.getResourceAsStream("/MockAnimalTraceResponse2.xml")
-                )
+                ),
+                TEST_SERVICE_KEY
         );
         //when
-        TraceResult result = sut.traceNoSearch(TEST_TRACE_NO, TEST_SERVICE_KEY, 1);
+        TraceResult result = sut.traceNoSearch(TEST_TRACE_NO, 1);
 
         //then
         assertAll(
@@ -70,11 +73,12 @@ class AnimalTraceImplTest {
         sut = new AnimalTraceImpl(
                 new MockMtraceHttpClientImpl(
                         AnimalTraceImplTest.class.getResourceAsStream("/MockAnimalTraceResponse3.xml")
-                )
+                ),
+                TEST_SERVICE_KEY
         );
 
         //when
-        TraceResult result = sut.traceNoSearch(TEST_TRACE_NO, TEST_SERVICE_KEY, 3, "1178522046");
+        TraceResult result = sut.traceNoSearch(TEST_TRACE_NO, 3, "1178522046");
 
         //then
         assertAll(
@@ -82,5 +86,26 @@ class AnimalTraceImplTest {
                 () -> assertThat(result.butcheryInformation().gradeNm(), is("2"))
         );
 
+    }
+
+    @DisplayName("통합이력정보 조회에 실패합니다.")
+    @Test
+    void callTraceNoSearch_fail() throws Exception {
+        //given
+        sut = new AnimalTraceImpl(
+                new MockMtraceHttpClientImpl(
+                        AnimalTraceImplTest.class.getResourceAsStream("/MockErrorResponse.xml")
+                ),
+                TEST_SERVICE_KEY
+        );
+
+
+        //when //then
+        MtraceRequestException mtraceRequestException =
+                assertThrows(MtraceRequestException.class, () -> sut.traceNoSearch(TEST_TRACE_NO));
+        assertAll(
+                ()-> assertThat(mtraceRequestException.getMtraceErrorCode(),is("99")),
+                ()-> assertThat(mtraceRequestException.getMessage(),is("INVALID REQUEST PARAMETER ERROR."))
+        );
     }
 }

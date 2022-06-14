@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <header>
+        <resultCode>99</resultCode>
+        <resultMsg>INVALID REQUEST PARAMETER ERROR.</resultMsg>
+    </header>
+    <notice>
+        <rows/>
+    </notice>
+    <body>
+        <items>
+        </items>
+    </body>
+</response>

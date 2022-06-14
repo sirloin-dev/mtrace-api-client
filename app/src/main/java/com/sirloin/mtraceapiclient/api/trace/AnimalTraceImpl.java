@@ -13,6 +13,7 @@ import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 import com.sirloin.mtraceapiclient.internal.xml.DocumentFactory;
 import com.sirloin.mtraceapiclient.internal.xml.MtraceXmlParserMixin;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -49,7 +50,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
     /**
      * 인증키 parameter name입니다.
      */
-    private static final String SERVICE_KEY = "serviceKey";
+    private static final String PARAM_SERVICE_KEY = "serviceKey";
     /**
      * 조회정보 xml tag name입니다.
      */
@@ -65,15 +66,22 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
     @SuppressWarnings("PMD.BeanMembersShouldSerialize")
     private final MtraceHttpClient httpClient;
 
-    AnimalTraceImpl(final MtraceHttpClient mtraceHttpClient) {
+    /**
+     * api 이용에 필요한 인증키입니다.
+     */
+    @SuppressWarnings("PMD.BeanMembersShouldSerialize")
+    private final String serviceKey;
+
+    AnimalTraceImpl(final MtraceHttpClient mtraceHttpClient, final String serviceKey) {
         this.httpClient = mtraceHttpClient;
+        this.serviceKey = serviceKey;
     }
 
     @Override
-    public TraceResult traceNoSearch(final String traceNo, final String serviceKey) throws Exception {
+    public TraceResult traceNoSearch(final String traceNo) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put(TRACE_NO, traceNo);
-        params.put(SERVICE_KEY, serviceKey);
+        params.put(PARAM_SERVICE_KEY, serviceKey);
 
         MtraceHttpResponse response = httpClient.get(
                 new MtraceHttpRequest(
@@ -87,12 +95,11 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
     @Override
     public TraceResult traceNoSearch(
             final String traceNo,
-            final String serviceKey,
             final int optionNo
     ) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put(TRACE_NO, traceNo);
-        params.put(SERVICE_KEY, serviceKey);
+        params.put(PARAM_SERVICE_KEY, serviceKey);
         params.put("optionNo", optionNo);
 
 
@@ -108,13 +115,12 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
     @Override
     public TraceResult traceNoSearch(
             final String traceNo,
-            final String serviceKey,
             final int optionNo,
             final String corpNo
     ) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put(TRACE_NO, traceNo);
-        params.put(SERVICE_KEY, serviceKey);
+        params.put(PARAM_SERVICE_KEY, serviceKey);
         params.put("optionNo", optionNo);
         params.put("corpNo", corpNo);
 
@@ -129,8 +135,9 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
 
     private TraceResult responseConvert(final MtraceHttpResponse response)
             throws ParserConfigurationException, IOException, SAXException {
-
-        NodeList items = new DocumentFactory().parse(response.body()).getElementsByTagName("item");
+        Document doc = new DocumentFactory().parse(response.body());
+        assertSuccess(doc);
+        NodeList items = doc.getElementsByTagName("item");
         Map<Integer, List<Element>> mappedByInfoType = new HashMap<>();
         mapToElements(items).forEach(item -> {
             int key = Integer.parseInt(getText(item.getElementsByTagName(INFO_TYPE)));
