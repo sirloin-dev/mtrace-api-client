@@ -15,7 +15,7 @@ public interface ResponseXmlParserMixin {
         if (node.getNodeType() == Node.ELEMENT_NODE) {
             return (Element) node;
         } else {
-            throw new IllegalArgumentException("this node is not Element");
+            throw new IllegalArgumentException("해당 node는 Element가 아닙니다.");
         }
     }
 
