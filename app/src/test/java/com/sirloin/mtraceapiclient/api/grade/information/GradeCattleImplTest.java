@@ -17,7 +17,6 @@ class GradeCattleImplTest {
 
     private GradeCattleImpl sut;
 
-    //    private static final String TEST_ANIMAL_NO = "002147460101";
     private static final String TEST_ISSUE_DATE_STR = "2022-05-24";
     private static final String TEST_ISSUE_NO = "0323-05240157";
     private static final String TEST_SERVICE_KEY = "";

@@ -5,8 +5,112 @@ import java.time.Instant;
 
 /**
  * 소 등급 판정 정보입니다.
+ *
+ * java 8 호환을 위해 이렇게 구현했습니다. (추후 java8로 다운그레이드 예정이 되어있습니다.)
+ * 하지만 java 17 환경이라면 sealed interface 로 GradeInformation 의 하위타입을 확정지을 수 있습니다
+ *
  */
-public class CattleGradeInformation extends GradeInformation {
+public class CattleGradeInformation implements GradeInformation {
+    /**
+     * 발급일자.
+     */
+    private final Instant issueDate;
+    /**
+     * 발급번호.
+     */
+    private final String issueNo;
+    /**
+     * 품종코드.
+     */
+    private final String judgeKindCd;
+    /**
+     * 평가사코드.
+     */
+    private final String raterCode;
+    /**
+     * 평가사명.
+     */
+    private final String raterNm;
+    /**
+     * 도축일자.
+     */
+    private final Instant abattDate;
+    /**
+     * 도축장명.
+     */
+    private final String abattNm;
+    /**
+     * 등급판정일자.
+     */
+    private final Instant judgeDate;
+    /**
+     * 도축장코드.
+     */
+    private final String abattCode;
+    /**
+     * 도축장주소.
+     */
+    private final String abattAddr;
+    /**
+     * 도축장전화번호.
+     */
+    private final String abattTelNo;
+    /**
+     * 신청인명.
+     */
+    private final String reqUserNm;
+    /**
+     * 신청업체사업자번호.
+     */
+    private final String reqRegNo;
+    /**
+     * 신청업체명.
+     */
+    private final String reqComNm;
+    /**
+     * 신청업체주소명.
+     */
+    private final String reqAddr;
+    /**
+     * 신청업체전화번호.
+     */
+    private final String reqTelNo;
+    /**
+     * 축종명.
+     */
+    private final String liveStockNm;
+    /**
+     * 도축시작번호.
+     */
+    private final String abattFno;
+    /**
+     * 도축종료번호.
+     */
+    private final String abattTno;
+    /**
+     * 등급판정품종.
+     */
+    private final String judgeBreedNm;
+    /**
+     * 등급판정성별.
+     */
+    private final String judgeSexNm;
+    /**
+     * 도체중량.
+     */
+    private final String weight;
+    /**
+     * 등급코드.
+     */
+    private final String gradeCd;
+    /**
+     * 등급명.
+     */
+    private final String gradeNm;
+    /**
+     * 경락가격.
+     */
+    private final String costAmt;
     /**
      * 육량지수.
      */
@@ -61,7 +165,9 @@ public class CattleGradeInformation extends GradeInformation {
     private final String birthMonth;
 
     /**
-     *  소 등급 판정 정보 기본 생성자입니다.
+     * 소 등급 판정 정보 기본 생성자입니다.
+     * <p>
+     * builder를 사용하지않은 이유는 수많은 필드중 필수값이 누락될 경우 컴파일 타임에 알 수 없어 배제하였습니다.
      *
      * @param issueDate
      * @param issueNo
@@ -143,33 +249,31 @@ public class CattleGradeInformation extends GradeInformation {
             final String insfat,
             final String birthMonth
     ) {
-        super(
-                issueDate,
-                issueNo,
-                judgeKindCd,
-                raterCode,
-                raterNm,
-                abattDate,
-                abattNm,
-                judgeDate,
-                abattCode,
-                abattAddr,
-                abattTelNo,
-                reqUserNm,
-                reqRegNo,
-                reqComNm,
-                reqAddr,
-                reqTelNo,
-                liveStockNm,
-                abattFno,
-                abattTno,
-                judgeBreedNm,
-                judgeSexNm,
-                weight,
-                gradeCd,
-                gradeNm,
-                costAmt
-        );
+        this.issueDate = issueDate;
+        this.issueNo = issueNo;
+        this.judgeKindCd = judgeKindCd;
+        this.raterCode = raterCode;
+        this.raterNm = raterNm;
+        this.abattDate = abattDate;
+        this.abattNm = abattNm;
+        this.judgeDate = judgeDate;
+        this.abattCode = abattCode;
+        this.abattAddr = abattAddr;
+        this.abattTelNo = abattTelNo;
+        this.reqUserNm = reqUserNm;
+        this.reqRegNo = reqRegNo;
+        this.reqComNm = reqComNm;
+        this.reqAddr = reqAddr;
+        this.reqTelNo = reqTelNo;
+        this.liveStockNm = liveStockNm;
+        this.abattFno = abattFno;
+        this.abattTno = abattTno;
+        this.judgeBreedNm = judgeBreedNm;
+        this.judgeSexNm = judgeSexNm;
+        this.weight = weight;
+        this.gradeCd = gradeCd;
+        this.gradeNm = gradeNm;
+        this.costAmt = costAmt;
         this.windex = windex;
         this.qgrade = qgrade;
         this.wgrade = wgrade;
@@ -183,6 +287,207 @@ public class CattleGradeInformation extends GradeInformation {
         this.tissue = tissue;
         this.insfat = insfat;
         this.birthMonth = birthMonth;
+    }
+
+
+    /**
+     * @return 발급일자
+     */
+    @Override
+    public Instant getIssueDate() {
+        return issueDate;
+    }
+
+    /**
+     * @return 발급번호
+     */
+    @Override
+    public String getIssueNo() {
+        return issueNo;
+    }
+
+    /**
+     * @return 품종코드
+     */
+    @Override
+    public String getJudgeKindCd() {
+        return judgeKindCd;
+    }
+
+    /**
+     * @return 평가사코드
+     */
+    @Override
+    public String getRaterCode() {
+        return raterCode;
+    }
+
+    /**
+     * @return 평가사명
+     */
+    @Override
+    public String getRaterNm() {
+        return raterNm;
+    }
+
+    /**
+     * @return 도축일자
+     */
+    @Override
+    public Instant getAbattDate() {
+        return abattDate;
+    }
+
+    /**
+     * @return 도축장명
+     */
+    @Override
+    public String getAbattNm() {
+        return abattNm;
+    }
+
+    /**
+     * @return 등급판정일자
+     */
+    @Override
+    public Instant getJudgeDate() {
+        return judgeDate;
+    }
+
+    /**
+     * @return 도축장코드
+     */
+    @Override
+    public String getAbattCode() {
+        return abattCode;
+    }
+
+    /**
+     * @return 도축장주소
+     */
+    @Override
+    public String getAbattAddr() {
+        return abattAddr;
+    }
+
+    /**
+     * @return 도축장전화번호
+     */
+    @Override
+    public String getAbattTelNo() {
+        return abattTelNo;
+    }
+
+    /**
+     * @return 신청인명
+     */
+    @Override
+    public String getReqUserNm() {
+        return reqUserNm;
+    }
+
+    /**
+     * @return 신청업체사업자번호
+     */
+    @Override
+    public String getReqRegNo() {
+        return reqRegNo;
+    }
+
+    /**
+     * @return 신청업체명
+     */
+    @Override
+    public String getReqComNm() {
+        return reqComNm;
+    }
+
+    /**
+     * @return 신청업체주소명
+     */
+    @Override
+    public String getReqAddr() {
+        return reqAddr;
+    }
+
+    /**
+     * @return 신청업체전화번호
+     */
+    @Override
+    public String getReqTelNo() {
+        return reqTelNo;
+    }
+
+    /**
+     * @return 축종명
+     */
+    @Override
+    public String getLiveStockNm() {
+        return liveStockNm;
+    }
+
+    /**
+     * @return 도축시작번호
+     */
+    @Override
+    public String getAbattFno() {
+        return abattFno;
+    }
+
+    /**
+     * @return 도축종료번호
+     */
+    @Override
+    public String getAbattTno() {
+        return abattTno;
+    }
+
+    /**
+     * @return 등급판정품종
+     */
+    @Override
+    public String getJudgeBreedNm() {
+        return judgeBreedNm;
+    }
+
+    /**
+     * @return 등급판정성별
+     */
+    @Override
+    public String getJudgeSexNm() {
+        return judgeSexNm;
+    }
+
+    /**
+     * @return 도체중량
+     */
+    @Override
+    public String getWeight() {
+        return weight;
+    }
+
+    /**
+     * @return 등급코드
+     */
+    @Override
+    public String getGradeCd() {
+        return gradeCd;
+    }
+
+    /**
+     * @return 등급명
+     */
+    @Override
+    public String getGradeNm() {
+        return gradeNm;
+    }
+
+    /**
+     * @return 경락가격
+     */
+    @Override
+    public String getCostAmt() {
+        return costAmt;
     }
 
     /**

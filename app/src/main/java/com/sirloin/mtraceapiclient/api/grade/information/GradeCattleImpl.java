@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * 소 등급판정정보 확인 api 구현체입니다.
  */
-public class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlParserMixin {
+final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlParserMixin {
 
     /**
      * Mtrace api용 httpclient 입니다.

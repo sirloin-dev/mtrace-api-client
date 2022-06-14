@@ -5,335 +5,129 @@ import java.time.Instant;
 /**
  * 등급판정 정보입니다. 각 동물별 공통 정보를 취합한 모델입니다.
  */
-public abstract class GradeInformation {
-    /**
-     * 발급일자.
-     */
-    private final Instant issueDate;
-    /**
-     * 발급번호.
-     */
-    private final String issueNo;
-    /**
-     * 품종코드.
-     */
-    private final String judgeKindCd;
-    /**
-     * 평가사코드.
-     */
-    private final String raterCode;
-    /**
-     * 평가사명.
-     */
-    private final String raterNm;
-    /**
-     * 도축일자.
-     */
-    private final Instant abattDate;
-    /**
-     * 도축장명.
-     */
-    private final String abattNm;
-    /**
-     * 등급판정일자.
-     */
-    private final Instant judgeDate;
-    /**
-     * 도축장코드.
-     */
-    private final String abattCode;
-    /**
-     * 도축장주소.
-     */
-    private final String abattAddr;
-    /**
-     * 도축장전화번호.
-     */
-    private final String abattTelNo;
-    /**
-     * 신청인명.
-     */
-    private final String reqUserNm;
-    /**
-     * 신청업체사업자번호.
-     */
-    private final String reqRegNo;
-    /**
-     * 신청업체명.
-     */
-    private final String reqComNm;
-    /**
-     * 신청업체주소명.
-     */
-    private final String reqAddr;
-    /**
-     * 신청업체전화번호.
-     */
-    private final String reqTelNo;
-    /**
-     * 축종명.
-     */
-    private final String liveStockNm;
-    /**
-     * 도축시작번호.
-     */
-    private final String abattFno;
-    /**
-     * 도축종료번호.
-     */
-    private final String abattTno;
-    /**
-     * 등급판정품종.
-     */
-    private final String judgeBreedNm;
-    /**
-     * 등급판정성별.
-     */
-    private final String judgeSexNm;
-    /**
-     * 도체중량.
-     */
-    private final String weight;
-    /**
-     * 등급코드.
-     */
-    private final String gradeCd;
-    /**
-     * 등급명.
-     */
-    private final String gradeNm;
-    /**
-     * 경락가격.
-     */
-    private final String costAmt;
-
-    @SuppressWarnings("checkstyle:parameternumber") // api의 parameter의 갯수가 많아 해당 경고를 무시합니다.
-    protected GradeInformation(
-            final Instant issueDate,
-            final String issueNo,
-            final String judgeKindCd,
-            final String raterCode,
-            final String raterNm,
-            final Instant abattDate,
-            final String abattNm,
-            final Instant judgeDate,
-            final String abattCode,
-            final String abattAddr,
-            final String abattTelNo,
-            final String reqUserNm,
-            final String reqRegNo,
-            final String reqComNm,
-            final String reqAddr,
-            final String reqTelNo,
-            final String liveStockNm,
-            final String abattFno,
-            final String abattTno,
-            final String judgeBreedNm,
-            final String judgeSexNm,
-            final String weight,
-            final String gradeCd,
-            final String gradeNm,
-            final String costAmt
-    ) {
-        this.issueDate = issueDate;
-        this.issueNo = issueNo;
-        this.judgeKindCd = judgeKindCd;
-        this.raterCode = raterCode;
-        this.raterNm = raterNm;
-        this.abattDate = abattDate;
-        this.abattNm = abattNm;
-        this.judgeDate = judgeDate;
-        this.abattCode = abattCode;
-        this.abattAddr = abattAddr;
-        this.abattTelNo = abattTelNo;
-        this.reqUserNm = reqUserNm;
-        this.reqRegNo = reqRegNo;
-        this.reqComNm = reqComNm;
-        this.reqAddr = reqAddr;
-        this.reqTelNo = reqTelNo;
-        this.liveStockNm = liveStockNm;
-        this.abattFno = abattFno;
-        this.abattTno = abattTno;
-        this.judgeBreedNm = judgeBreedNm;
-        this.judgeSexNm = judgeSexNm;
-        this.weight = weight;
-        this.gradeCd = gradeCd;
-        this.gradeNm = gradeNm;
-        this.costAmt = costAmt;
-    }
+public interface GradeInformation {
 
     /**
      * @return 발급일자
      */
-    public Instant getIssueDate() {
-        return issueDate;
-    }
+    Instant getIssueDate();
 
     /**
      * @return 발급번호
      */
-    public String getIssueNo() {
-        return issueNo;
-    }
+    String getIssueNo();
 
     /**
      * @return 품종코드
      */
-    public String getJudgeKindCd() {
-        return judgeKindCd;
-    }
+    String getJudgeKindCd();
 
     /**
      * @return 평가사코드
      */
-    public String getRaterCode() {
-        return raterCode;
-    }
+    String getRaterCode();
 
     /**
      * @return 평가사명
      */
-    public String getRaterNm() {
-        return raterNm;
-    }
+    String getRaterNm();
 
     /**
      * @return 도축일자
      */
-    public Instant getAbattDate() {
-        return abattDate;
-    }
+    Instant getAbattDate();
 
     /**
      * @return 도축장명
      */
-    public String getAbattNm() {
-        return abattNm;
-    }
+    String getAbattNm();
 
     /**
      * @return 등급판정일자
      */
-    public Instant getJudgeDate() {
-        return judgeDate;
-    }
-
+    Instant getJudgeDate();
     /**
      * @return 도축장코드
      */
-    public String getAbattCode() {
-        return abattCode;
-    }
+    String getAbattCode();
 
     /**
      * @return 도축장주소
      */
-    public String getAbattAddr() {
-        return abattAddr;
-    }
+    String getAbattAddr();
 
     /**
      * @return 도축장전화번호
      */
-    public String getAbattTelNo() {
-        return abattTelNo;
-    }
+    String getAbattTelNo();
 
     /**
      * @return 신청인명
      */
-    public String getReqUserNm() {
-        return reqUserNm;
-    }
+    String getReqUserNm();
 
     /**
      * @return 신청업체사업자번호
      */
-    public String getReqRegNo() {
-        return reqRegNo;
-    }
+    String getReqRegNo();
 
     /**
      * @return 신청업체명
      */
-    public String getReqComNm() {
-        return reqComNm;
-    }
+    String getReqComNm();
 
     /**
      * @return 신청업체주소명
      */
-    public String getReqAddr() {
-        return reqAddr;
-    }
+    String getReqAddr();
 
     /**
      * @return 신청업체전화번호
      */
-    public String getReqTelNo() {
-        return reqTelNo;
-    }
+    String getReqTelNo();
 
     /**
      * @return 축종명
      */
-    public String getLiveStockNm() {
-        return liveStockNm;
-    }
+    String getLiveStockNm();
 
     /**
      * @return 도축시작번호
      */
-    public String getAbattFno() {
-        return abattFno;
-    }
+    String getAbattFno();
 
     /**
      * @return 도축종료번호
      */
-    public String getAbattTno() {
-        return abattTno;
-    }
+    String getAbattTno();
 
     /**
      * @return 등급판정품종
      */
-    public String getJudgeBreedNm() {
-        return judgeBreedNm;
-    }
+    String getJudgeBreedNm();
 
     /**
      * @return 등급판정성별
      */
-    public String getJudgeSexNm() {
-        return judgeSexNm;
-    }
+    String getJudgeSexNm();
 
     /**
      * @return 도체중량
      */
-    public String getWeight() {
-        return weight;
-    }
+    String getWeight();
 
     /**
      * @return 등급코드
      */
-    public String getGradeCd() {
-        return gradeCd;
-    }
+    String getGradeCd();
 
     /**
      * @return 등급명
      */
-    public String getGradeNm() {
-        return gradeNm;
-    }
+    String getGradeNm();
 
     /**
      * @return 경락가격
      */
-    public String getCostAmt() {
-        return costAmt;
-    }
+    String getCostAmt();
 }

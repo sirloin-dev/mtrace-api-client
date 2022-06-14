@@ -30,7 +30,7 @@ import java.util.*;
 /**
  * 통합 이력조회 서비스 인터페이스 구현체입니다.
  */
-public final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
+final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
 
     /**
      * 통합 이력조회 URL 입니다.

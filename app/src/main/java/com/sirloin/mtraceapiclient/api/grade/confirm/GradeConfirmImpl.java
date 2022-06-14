@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * 축산물 등급판정확인서 인터페이스 구현체입니다.
  */
-public class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
+final class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
     /**
      * Mtrace api용 httpclient 입니다.
      */
@@ -42,7 +42,7 @@ public class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
     }
 
     @Override
-    public final GradeConfirmInformation gradeConfirm(final String animalNo, final String serviceKey) throws Exception {
+    public GradeConfirmInformation gradeConfirm(final String animalNo, final String serviceKey) throws Exception {
         Map<String, Object> params = new HashMap<>();
         params.put("animalNo", animalNo);
         params.put("serviceKey", serviceKey);
