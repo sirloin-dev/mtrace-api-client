@@ -12,6 +12,7 @@ import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 import com.sirloin.mtraceapiclient.internal.xml.DocumentFactory;
+import com.sirloin.mtraceapiclient.internal.xml.ResponseXmlParserMixin;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -30,7 +31,7 @@ import java.util.*;
 /**
  * 통합 이력조회 서비스 인터페이스 구현체입니다.
  */
-public final class AnimalTraceImpl implements AnimalTrace {
+public final class AnimalTraceImpl implements AnimalTrace, ResponseXmlParserMixin {
 
     /**
      * 통합 이력조회 URL 입니다.
@@ -161,17 +162,6 @@ public final class AnimalTraceImpl implements AnimalTrace {
         return elements;
     }
 
-    private Element toElement(final Node node) {
-        if (node.getNodeType() == Node.ELEMENT_NODE) {
-            return (Element) node;
-        } else {
-            throw new IllegalArgumentException("this node is not Element");
-        }
-    }
-
-    private static String getText(final NodeList nodeList) {
-        return nodeList.item(0).getTextContent();
-    }
 
     private static String getAnimalNo(final NodeList nodeList) {
         Node node = nodeList.item(0);
