@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import java.util.function.Function;
 
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
@@ -22,6 +23,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class MtraceHttpClientImplTest {
 
     private static final String TEST_URL = "https://testurl";
+    private static final String TEST_PARAM_KEY = "test";
+    private static final String TEST_PARAM_VALUE = "test";
+    private static final String TEST_ASSERT_URL = TEST_URL+"?"+TEST_PARAM_KEY+"="+TEST_PARAM_VALUE;
 
     @DisplayName("Http get 요청 후 200응답을 받습니다.")
     @Test
@@ -29,7 +33,7 @@ class MtraceHttpClientImplTest {
         //given
         MtraceHttpClientImpl sut = new MtraceHttpClientImpl(mockURL(HTTP_OK));
         Map<String, Object> param = new HashMap<>();
-        param.put("test", "test");
+        param.put(TEST_PARAM_KEY, TEST_PARAM_VALUE);
         MtraceHttpRequest request = new MtraceHttpRequest(TEST_URL, param);
 
         //when
@@ -37,7 +41,7 @@ class MtraceHttpClientImplTest {
 
         //then
         assertAll(
-                () -> assertThat(request.url(), is("https://testurl?test=test")),
+                () -> assertThat(request.url(), is(TEST_ASSERT_URL)),
                 () -> assertThat(response.method(), is(MtraceHttpMethod.GET)),
                 () -> assertThat(response.statusCode(), is(HTTP_OK))
         );
@@ -57,7 +61,7 @@ class MtraceHttpClientImplTest {
 
         //then
         assertAll(
-                () -> assertThat(request.url(), is("https://testurl?test=test")),
+                () -> assertThat(request.url(), is(TEST_ASSERT_URL)),
                 () -> assertThat(response.method(), is(MtraceHttpMethod.GET)),
                 () -> assertThat(response.statusCode(), is(HTTP_BAD_REQUEST))
         );
