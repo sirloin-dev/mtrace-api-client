@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <header>
+        <resultCode>00</resultCode>
+        <resultMsg>NORMAL SERVICE.</resultMsg>
+    </header>
+    <notice>
+        <rows/>
+    </notice>
+    <body>
+        <items>
+            <item>
+                <abattCode>0323</abattCode>
+                <abattDate>2022-05-23</abattDate>
+                <abattNm>농협경제지주회사(주) 부천축산물공판장</abattNm>
+                <animalNo>002147460101</animalNo>
+                <issueDate>2022-05-24</issueDate>
+                <issueNo>0323-05240157</issueNo>
+                <judgeDate>2022-05-24</judgeDate>
+                <judgeKindCd>023001</judgeKindCd>
+                <judgeKindNm>소</judgeKindNm>
+            </item>
+        </items>
+    </body>
+</response>
