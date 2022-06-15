@@ -1,6 +1,6 @@
 package com.sirloin.mtraceapiclient.internal.http.exception;
 
-import javax.validation.constraints.NotNull;
+import javax.annotation.Nonnull;
 import java.io.Serial;
 
 public final class MtraceHttpConnectException extends RuntimeException {
@@ -13,7 +13,7 @@ public final class MtraceHttpConnectException extends RuntimeException {
      * @param errorMessage
      * @param originalException
      */
-    public MtraceHttpConnectException(@NotNull final String errorMessage, @NotNull final Exception originalException) {
+    public MtraceHttpConnectException(@Nonnull final String errorMessage, @Nonnull final Exception originalException) {
         super(errorMessage, originalException);
     }
 }

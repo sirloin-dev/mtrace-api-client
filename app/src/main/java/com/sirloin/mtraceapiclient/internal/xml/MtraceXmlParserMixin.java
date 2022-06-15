@@ -1,14 +1,30 @@
 package com.sirloin.mtraceapiclient.internal.xml;
 
+import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
 
 public interface MtraceXmlParserMixin {
+
+    /**
+     * 응답받은 body가 정상적인 응답인지 아닌지 판별후 처리합니다.
+     *
+     * @param doc 응답받은 body를 변환한 Document
+     */
+    default void assertSuccess(final Document doc) {
+        Element resultCode = getFirstElement("resultCode", doc);
+        if (!resultCode.getTextContent().equals("00")) {
+            throw new MtraceRequestException(
+                    getFirstElement("resultMsg", doc).getTextContent(),
+                    resultCode.getTextContent()
+            );
+        }
+    }
 
     /**
      * node를 Element 타입으로 캐스팅합니다.
@@ -31,7 +47,7 @@ public interface MtraceXmlParserMixin {
      * @param doc     tagname으로 찾을 Document
      * @return 조회된 Element
      */
-    @NotNull
+    @Nonnull
     default Element getFirstElement(final String tagName, final Document doc) {
         NodeList nodeList = doc.getElementsByTagName(tagName);
         if (nodeList.item(0) == null) {
@@ -47,7 +63,7 @@ public interface MtraceXmlParserMixin {
      * @param nodeList 검색한 nodelist
      * @return 해당 노드의 TextContent
      */
-    @NotNull
+    @Nonnull
     default String getText(final NodeList nodeList) {
         return nodeList.item(0).getTextContent();
     }

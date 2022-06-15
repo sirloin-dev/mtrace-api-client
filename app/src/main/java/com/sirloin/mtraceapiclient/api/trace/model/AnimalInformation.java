@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 /**
@@ -19,16 +19,16 @@ import java.time.Instant;
  * @param traceNoType  소/돼지/묶음 구분.
  */
 public record AnimalInformation(
-        @NotNull Instant birthYmd,
+        @Nonnull Instant birthYmd,
         @Nullable String cattleNo,
         @Nullable String pigNo,
-        @NotNull String farmNo,
-        @NotNull String farmUniqueNo,
+        @Nonnull String farmNo,
+        @Nonnull String farmUniqueNo,
         int infoType,
-        @NotNull String lsTypeNm,
+        @Nonnull String lsTypeNm,
         int monthDiff,
-        @NotNull String sexNm,
-        @NotNull String traceNoType
+        @Nonnull String sexNm,
+        @Nonnull String traceNoType
 ) {
 
     /**
@@ -46,16 +46,16 @@ public record AnimalInformation(
      * @param traceNoType  소/돼지/묶음 구분.
      */
     public AnimalInformation(
-            final @NotNull Instant birthYmd,
+            final @Nonnull Instant birthYmd,
             final @Nullable String cattleNo,
             final @Nullable String pigNo,
-            final @NotNull String farmNo,
-            final @NotNull String farmUniqueNo,
+            final @Nonnull String farmNo,
+            final @Nonnull String farmUniqueNo,
             final int infoType,
-            final @NotNull String lsTypeNm,
+            final @Nonnull String lsTypeNm,
             final int monthDiff,
-            final @NotNull String sexNm,
-            final @NotNull String traceNoType
+            final @Nonnull String sexNm,
+            final @Nonnull String traceNoType
     ) {
         this.birthYmd = birthYmd;
         this.cattleNo = cattleNo;

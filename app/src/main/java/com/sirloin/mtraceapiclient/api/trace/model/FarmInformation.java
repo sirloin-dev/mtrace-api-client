@@ -1,6 +1,6 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
-import javax.validation.constraints.NotNull;
+import javax.annotation.Nonnull;
 import java.time.Instant;
 
 /**
@@ -15,13 +15,13 @@ import java.time.Instant;
  * @param traceNoType 소/돼지/묶음 구분
  */
 public record FarmInformation(
-        @NotNull String farmAddr,
-        @NotNull String farmNo,
-        @NotNull String farmerNm,
+        @Nonnull String farmAddr,
+        @Nonnull String farmNo,
+        @Nonnull String farmerNm,
         int infoType,
-        @NotNull String regType,
-        @NotNull Instant regYmd,
-        @NotNull String traceNoType
+        @Nonnull String regType,
+        @Nonnull Instant regYmd,
+        @Nonnull String traceNoType
 ) {
 
 

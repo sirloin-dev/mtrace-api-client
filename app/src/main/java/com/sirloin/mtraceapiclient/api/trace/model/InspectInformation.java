@@ -1,6 +1,6 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
-import javax.validation.constraints.NotNull;
+import javax.annotation.Nonnull;
 import java.time.Instant;
 
 
@@ -13,10 +13,10 @@ import java.time.Instant;
  * @param traceNoType 소/돼지/묶음 구분
  */
 public record InspectInformation(
-        @NotNull Instant inspectDt,
-        @NotNull String inspectYn,
+        @Nonnull Instant inspectDt,
+        @Nonnull String inspectYn,
         int infoType,
-        @NotNull String traceNoType
+        @Nonnull String traceNoType
 ) {
 
 }

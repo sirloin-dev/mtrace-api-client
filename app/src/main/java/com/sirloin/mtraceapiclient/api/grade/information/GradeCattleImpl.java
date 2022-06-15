@@ -6,6 +6,7 @@ import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 import com.sirloin.mtraceapiclient.internal.xml.DocumentFactory;
 import com.sirloin.mtraceapiclient.internal.xml.MtraceXmlParserMixin;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
@@ -28,13 +29,20 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
     private final MtraceHttpClient httpClient;
 
     /**
+     * api 이용에 필요한 인증키입니다.
+     */
+    @SuppressWarnings("PMD.BeanMembersShouldSerialize")
+    private final String serviceKey;
+
+    /**
      * 소 등급 판정정보 Url입니다.
      */
     private static final String GRADE_CATTLE_URL =
             "http://data.ekape.or.kr/openapi-data/service/user/grade/confirm/cattle";
 
-    GradeCattleImpl(final MtraceHttpClient httpClient) {
+    GradeCattleImpl(final MtraceHttpClient httpClient, final String serviceKey) {
         this.httpClient = httpClient;
+        this.serviceKey = serviceKey;
     }
 
     /**
@@ -42,15 +50,13 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
      *
      * @param issueNo      확인서 번호
      * @param issueDateStr 확인서 발급일 String 형태 yyyy-mm-dd 형식의 String 이어야 한다.
-     * @param serviceKey   서비스 인증키
      * @return CattleGradeInformation
      */
     @Override
     public CattleGradeInformation grade(
             final String issueNo,
-            final String issueDateStr,
-            final String serviceKey
-    ) throws Exception {
+            final String issueDateStr
+    ) throws IOException, ParserConfigurationException, SAXException {
         Map<String, Object> params = new HashMap<>();
         params.put("issueNo", issueNo);
         params.put("issueDate", issueDateStr);
@@ -71,7 +77,9 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
      */
     private CattleGradeInformation responseConvert(final MtraceHttpResponse response)
             throws ParserConfigurationException, IOException, SAXException {
-        Element item = getFirstElement("item", new DocumentFactory().parse(response.body()));
+        Document doc = new DocumentFactory().parse(response.body());
+        assertSuccess(doc);
+        Element item = getFirstElement("item", doc);
         return new CattleGradeInformation(
                 LocalDate.parse(getText(item.getElementsByTagName("issueDate")))
                         .atStartOfDay().toInstant(ZoneOffset.UTC),
