@@ -2,6 +2,10 @@ package com.sirloin.mtraceapiclient.api.trace;
 
 import com.sirloin.mtraceapiclient.api.trace.model.TraceResult;
 import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 
 /**
@@ -15,7 +19,9 @@ public interface AnimalTrace {
      * @param traceNo : 개체/이력/묶음 번호입니다 required
      * @return TraceResult 통합이력 조회 결과입니다
      */
-    TraceResult traceNoSearch(String traceNo) throws Exception;
+    TraceResult traceNoSearch(
+            String traceNo
+    ) throws ParserConfigurationException, IOException, SAXException;
 
     /**
      * 축산물 이력정보 조회입니다.
@@ -24,7 +30,10 @@ public interface AnimalTrace {
      * @param optionNo : 옵션 번호입니다
      * @return TraceResult 통합이력 조회 결과입니다 조회한 옵션값을 제외한 나머지 값은 Null로 리턴됩니다.
      */
-    TraceResult traceNoSearch(String traceNo, int optionNo) throws Exception;
+    TraceResult traceNoSearch(
+            String traceNo,
+            int optionNo
+    ) throws ParserConfigurationException, IOException, SAXException;
 
     /**
      * 축산물 이력정보 조회입니다.
@@ -34,7 +43,11 @@ public interface AnimalTrace {
      * @param corpNo   : 사업자 번호입니다
      * @return TraceResult 통합이력 조회 결과입니다 조회한 옵션값을 제외한 나머지 값은 Null로 리턴됩니다.
      */
-    TraceResult traceNoSearch(String traceNo, int optionNo, String corpNo) throws Exception;
+    TraceResult traceNoSearch(
+            String traceNo,
+            int optionNo,
+            String corpNo
+    ) throws ParserConfigurationException, IOException, SAXException;
 
     /**
      * AnimalTrace의 기본 구현체 생성 메서드입니다.

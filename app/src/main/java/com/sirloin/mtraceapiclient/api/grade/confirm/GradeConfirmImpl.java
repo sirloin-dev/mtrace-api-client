@@ -51,7 +51,9 @@ final class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
     }
 
     @Override
-    public GradeConfirmInformation gradeConfirm(final String animalNo) throws Exception {
+    public GradeConfirmInformation gradeConfirm(
+            final String animalNo
+    ) throws IOException, ParserConfigurationException, SAXException {
         Map<String, Object> params = new HashMap<>();
         params.put("animalNo", animalNo);
         params.put("serviceKey", serviceKey);

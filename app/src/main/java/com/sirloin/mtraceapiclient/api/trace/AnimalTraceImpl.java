@@ -78,7 +78,9 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
     }
 
     @Override
-    public TraceResult traceNoSearch(final String traceNo) throws Exception {
+    public TraceResult traceNoSearch(
+            final String traceNo
+    ) throws ParserConfigurationException, IOException, SAXException {
         Map<String, Object> params = new HashMap<>();
         params.put(TRACE_NO, traceNo);
         params.put(PARAM_SERVICE_KEY, serviceKey);
@@ -96,7 +98,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
     public TraceResult traceNoSearch(
             final String traceNo,
             final int optionNo
-    ) throws Exception {
+    ) throws ParserConfigurationException, IOException, SAXException {
         Map<String, Object> params = new HashMap<>();
         params.put(TRACE_NO, traceNo);
         params.put(PARAM_SERVICE_KEY, serviceKey);
@@ -117,7 +119,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
             final String traceNo,
             final int optionNo,
             final String corpNo
-    ) throws Exception {
+    ) throws ParserConfigurationException, IOException, SAXException {
         Map<String, Object> params = new HashMap<>();
         params.put(TRACE_NO, traceNo);
         params.put(PARAM_SERVICE_KEY, serviceKey);

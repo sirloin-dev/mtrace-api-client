@@ -3,6 +3,10 @@ package com.sirloin.mtraceapiclient.api.grade.information;
 import com.sirloin.mtraceapiclient.api.grade.information.model.CattleGradeInformation;
 import com.sirloin.mtraceapiclient.api.grade.information.model.GradeInformation;
 import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 /**
  * 등급판정결과(확인서)정보 인터페이스입니다.
@@ -20,7 +24,7 @@ public interface Grade<T extends GradeInformation> {
      * @param issueDateStr 확인서 발급일 String 형태 yyyy-mm-dd 형식의 String 이어야 한다.
      * @return GradeInformation
      */
-    T grade(String issueNo, String issueDateStr) throws Exception;
+    T grade(String issueNo, String issueDateStr) throws IOException, ParserConfigurationException, SAXException;
 
 
     /**

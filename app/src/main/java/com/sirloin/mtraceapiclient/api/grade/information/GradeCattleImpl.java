@@ -56,7 +56,7 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
     public CattleGradeInformation grade(
             final String issueNo,
             final String issueDateStr
-    ) throws Exception {
+    ) throws IOException, ParserConfigurationException, SAXException {
         Map<String, Object> params = new HashMap<>();
         params.put("issueNo", issueNo);
         params.put("issueDate", issueDateStr);

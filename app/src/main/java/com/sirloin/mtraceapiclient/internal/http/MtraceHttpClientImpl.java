@@ -8,6 +8,7 @@ import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.function.Function;
 
@@ -33,13 +34,13 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
     }
 
     @Override
-    public MtraceHttpResponse get(final MtraceHttpRequest request) throws Exception {
+    public MtraceHttpResponse get(final MtraceHttpRequest request) throws MalformedURLException, ProtocolException {
         HttpURLConnection conn = this.connect(request.url());
         conn.setRequestMethod(MtraceHttpMethod.GET.name());
         return this.httpResponse(conn);
     }
 
-    private HttpURLConnection connect(final String apiUrl) throws Exception {
+    private HttpURLConnection connect(final String apiUrl) throws MalformedURLException {
         try {
             return (HttpURLConnection) urlFactory.apply(apiUrl).openConnection();
         } catch (MalformedURLException e) {
@@ -49,7 +50,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
-    private MtraceHttpResponse httpResponse(final HttpURLConnection con) throws Exception {
+    private MtraceHttpResponse httpResponse(final HttpURLConnection con) {
         try {
             return this.call(con);
         } catch (Exception e) {
@@ -59,7 +60,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
-    private MtraceHttpResponse call(final HttpURLConnection con) throws Exception {
+    private MtraceHttpResponse call(final HttpURLConnection con) throws IOException {
         if (HTTP_OK <= con.getResponseCode() && con.getResponseCode() <= HTTP_OK_END) {
             return new MtraceHttpResponse(
                     MtraceHttpMethod.valueOf(con.getRequestMethod()),
@@ -75,7 +76,7 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
-    private ByteArrayInputStream copyInputStream(final InputStream inputStream) throws Exception {
+    private ByteArrayInputStream copyInputStream(final InputStream inputStream) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         inputStream.transferTo(baos);
         return new ByteArrayInputStream(baos.toByteArray());
