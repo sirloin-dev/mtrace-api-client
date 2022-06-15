@@ -77,7 +77,7 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
      */
     private CattleGradeInformation responseConvert(final MtraceHttpResponse response)
             throws ParserConfigurationException, IOException, SAXException {
-        Document doc = new DocumentFactory().parse(response.body());
+        Document doc = new DocumentFactory().parse(response.getBody());
         assertSuccess(doc);
         Element item = getFirstElement("item", doc);
         return new CattleGradeInformation(

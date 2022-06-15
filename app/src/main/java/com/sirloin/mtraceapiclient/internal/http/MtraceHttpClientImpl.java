@@ -29,13 +29,20 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
     @SuppressWarnings("PMD.BeanMembersShouldSerialize")
     private final Function<String, URL> urlFactory;
 
+    /**
+     * resource의 응답데이터의 크기를 볼때 1k ~ 8k의 값을 가집니다. 그래서 해당값을 중간값인 4096으로 설정하였습니다.
+     */
+    private static final int BUFFER_SIZE = 4096;
+
     MtraceHttpClientImpl(final Function<String, URL> urlFun) {
         this.urlFactory = urlFun;
     }
 
     @Override
-    public MtraceHttpResponse get(final MtraceHttpRequest request) throws MalformedURLException, ProtocolException {
-        HttpURLConnection conn = this.connect(request.url());
+    public MtraceHttpResponse get(
+            final MtraceHttpRequest request
+    ) throws MalformedURLException, ProtocolException, UnsupportedEncodingException {
+        HttpURLConnection conn = this.connect(request.getUrl());
         conn.setRequestMethod(MtraceHttpMethod.GET.name());
         return this.httpResponse(conn);
     }
@@ -76,9 +83,16 @@ final class MtraceHttpClientImpl implements MtraceHttpClient {
         }
     }
 
+    // java 8 버젼
+    @SuppressWarnings({"PMD.DataflowAnomalyAnalysis", "PMD.AssignmentInOperand"})
     private ByteArrayInputStream copyInputStream(final InputStream inputStream) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        inputStream.transferTo(baos);
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int length;
+        while ((length = inputStream.read(buffer)) > -1) {
+            baos.write(buffer, 0, length);
+        }
+        baos.flush();
         return new ByteArrayInputStream(baos.toByteArray());
     }
 }

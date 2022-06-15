@@ -70,7 +70,7 @@ final class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
 
     private GradeConfirmInformation responseConvert(final MtraceHttpResponse response)
             throws ParserConfigurationException, IOException, SAXException {
-        Document doc = new DocumentFactory().parse(response.body());
+        Document doc = new DocumentFactory().parse(response.getBody());
         assertSuccess(doc);
         Element item = getFirstElement("item", doc);
         return new GradeConfirmInformation(

@@ -3,6 +3,7 @@ package com.sirloin.mtraceapiclient.internal.http;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpRequest;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
@@ -17,7 +18,9 @@ public interface MtraceHttpClient {
      * @throws MalformedURLException
      * @throws ProtocolException
      */
-    MtraceHttpResponse get(MtraceHttpRequest request) throws MalformedURLException, ProtocolException;
+    MtraceHttpResponse get(
+            MtraceHttpRequest request
+    ) throws MalformedURLException, ProtocolException, UnsupportedEncodingException;
 
     /**
      * 해당 인터페이스의 기본 구현체입니다.
@@ -27,7 +30,10 @@ public interface MtraceHttpClient {
         return new MtraceHttpClientImpl(defaultUrlFactory());
     }
 
-    private static Function<String, URL> defaultUrlFactory() {
+    /**
+     * @return new URL(url);
+     */
+    static Function<String, URL> defaultUrlFactory() {
         return url -> {
             try {
                 return new URL(url);
