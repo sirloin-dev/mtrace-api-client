@@ -1,12 +1,12 @@
 package com.sirloin.mtraceapiclient.internal.http.model;
 
-import javax.validation.constraints.NotNull;
+import javax.annotation.Nonnull;
 import java.io.InputStream;
 
 public record MtraceHttpResponse(
-        @NotNull MtraceHttpMethod method,
+        @Nonnull MtraceHttpMethod method,
         int statusCode,
-        @NotNull InputStream body
+        @Nonnull InputStream body
 ) {
 
 }

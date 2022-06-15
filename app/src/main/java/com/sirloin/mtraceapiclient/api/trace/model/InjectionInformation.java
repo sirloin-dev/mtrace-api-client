@@ -1,6 +1,6 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
-import javax.validation.constraints.NotNull;
+import javax.annotation.Nonnull;
 import java.time.Instant;
 
 /**
@@ -13,11 +13,11 @@ import java.time.Instant;
  * @param traceNoType     소/돼지/묶음 구분
  */
 public record InjectionInformation(
-        @NotNull Instant injectionYmd,
-        @NotNull String injectiondayCnt,
-        @NotNull String vaccineorder,
+        @Nonnull Instant injectionYmd,
+        @Nonnull String injectiondayCnt,
+        @Nonnull String vaccineorder,
         int infoType,
-        @NotNull String traceNoType
+        @Nonnull String traceNoType
 ) {
 
 }

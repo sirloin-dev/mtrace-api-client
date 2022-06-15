@@ -29,7 +29,7 @@ buildscript {
 }
 
 allprojects {
-    group "com.sirloin.jvmlib"
+    group "com.sirloin.mtraceapiclient"
 
     apply plugin: "idea"
 
@@ -40,16 +40,11 @@ allprojects {
     apply from: "$rootDir/gradle/scripts/testing.gradle"
 
     repositories {
-        mavenLocal()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 
     jar {
         enabled = true
-    }
-
-    dependencies {
-        // JSR 305: Annotations for Software Defect Detection
-        compileOnly "com.google.code.findbugs:jsr305:$version_jsr305"
     }
 }

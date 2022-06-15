@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public record TraceResult(
         @Nullable AnimalInformation animalInformation,
-        @NotNull List<FarmInformation> farmInformation,
+        @Nonnull List<FarmInformation> farmInformation,
         @Nullable ButcheryInformation butcheryInformation,
         @Nullable ProcessPlaceInformation processPlaceInformation,
         @Nullable InjectionInformation injectionInformation,

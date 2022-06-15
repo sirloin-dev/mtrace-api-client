@@ -6,8 +6,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
 
 public interface MtraceXmlParserMixin {
 
@@ -47,7 +47,7 @@ public interface MtraceXmlParserMixin {
      * @param doc     tagname으로 찾을 Document
      * @return 조회된 Element
      */
-    @NotNull
+    @Nonnull
     default Element getFirstElement(final String tagName, final Document doc) {
         NodeList nodeList = doc.getElementsByTagName(tagName);
         if (nodeList.item(0) == null) {
@@ -63,7 +63,7 @@ public interface MtraceXmlParserMixin {
      * @param nodeList 검색한 nodelist
      * @return 해당 노드의 TextContent
      */
-    @NotNull
+    @Nonnull
     default String getText(final NodeList nodeList) {
         return nodeList.item(0).getTextContent();
     }

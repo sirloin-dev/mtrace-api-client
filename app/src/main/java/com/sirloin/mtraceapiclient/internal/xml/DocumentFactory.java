@@ -3,7 +3,7 @@ package com.sirloin.mtraceapiclient.internal.xml;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import javax.validation.constraints.NotNull;
+import javax.annotation.Nonnull;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,8 +17,8 @@ public final class DocumentFactory {
     * @param xmlInputStream Documnet로 변환할 InputStream
     * @return Document xml을 Documnet로 변환한 결과물
     */
-   @NotNull
-   public Document parse(final @NotNull InputStream xmlInputStream)
+   @Nonnull
+   public Document parse(final @Nonnull InputStream xmlInputStream)
            throws ParserConfigurationException, IOException, SAXException {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);

@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
-import javax.validation.constraints.NotNull;
 
+import javax.annotation.Nonnull;
 
 /**
  * 포장처리 정보.
@@ -12,10 +12,10 @@ import javax.validation.constraints.NotNull;
  * @param traceNoType 소/돼지/묶음 구분
  */
 public record ProcessPlaceInformation(
-        @NotNull String processPlaceAddr,
-        @NotNull String processPlaceNm,
+        @Nonnull String processPlaceAddr,
+        @Nonnull String processPlaceNm,
         int infoType,
-        @NotNull String traceNoType
+        @Nonnull String traceNoType
 ) {
 
 }
