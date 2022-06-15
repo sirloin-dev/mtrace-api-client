@@ -20,7 +20,7 @@ Sirloin Dev
 
 이 소프트웨어를 실행하기 위한 최소 사양은 다음과 같습니다.
 
-- OpenJDK 또는 호환되는 Java Virtual Machine 버전 17 이상
+- OpenJDK 또는 호환되는 Java Virtual Machine 버전 8 이상
 
 [[licencing]]
 == 라이센스
