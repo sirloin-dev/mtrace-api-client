@@ -5,7 +5,7 @@
 buildscript {
     ext {
         // lang
-        version_target_jvm = 17
+        version_target_jvm = 8
         version_javax_validation = "2.0.1.Final"
         version_javax_inject = "1"
         version_jsr305 = "3.0.2"

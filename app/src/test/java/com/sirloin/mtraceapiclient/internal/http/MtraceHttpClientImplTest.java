@@ -41,9 +41,9 @@ class MtraceHttpClientImplTest {
 
         //then
         assertAll(
-                () -> assertThat(request.url(), is(TEST_ASSERT_URL)),
-                () -> assertThat(response.method(), is(MtraceHttpMethod.GET)),
-                () -> assertThat(response.statusCode(), is(HTTP_OK))
+                () -> assertThat(request.getUrl(), is(TEST_ASSERT_URL)),
+                () -> assertThat(response.getMethod(), is(MtraceHttpMethod.GET)),
+                () -> assertThat(response.getStatusCode(), is(HTTP_OK))
         );
     }
 
@@ -61,9 +61,9 @@ class MtraceHttpClientImplTest {
 
         //then
         assertAll(
-                () -> assertThat(request.url(), is(TEST_ASSERT_URL)),
-                () -> assertThat(response.method(), is(MtraceHttpMethod.GET)),
-                () -> assertThat(response.statusCode(), is(HTTP_BAD_REQUEST))
+                () -> assertThat(request.getUrl(), is(TEST_ASSERT_URL)),
+                () -> assertThat(response.getMethod(), is(MtraceHttpMethod.GET)),
+                () -> assertThat(response.getStatusCode(), is(HTTP_BAD_REQUEST))
         );
     }
 

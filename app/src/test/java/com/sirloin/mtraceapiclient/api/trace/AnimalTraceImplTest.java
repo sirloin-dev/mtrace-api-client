@@ -33,13 +33,13 @@ class AnimalTraceImplTest {
 
         //then
         assertAll(
-                () -> assertThat(result.animalInformation().cattleNo(), is("410002147460101")),
-                () -> assertThat(result.animalInformation().lsTypeNm(), is("한우")),
-                () -> assertThat(result.farmInformation().size(), is(5)),
-                () -> assertThat(result.butcheryInformation().gradeNm(), is("2")),
-                () -> assertThat(result.processPlaceInformation().processPlaceAddr(), is("경기도 안산시 단원구 화정동 꽃우물길")),
-                () -> assertThat(result.injectionInformation().injectiondayCnt(), is("접종 후 38일 경과")),
-                () -> assertThat(result.inspectInformation().inspectYn(), is("음성"))
+                () -> assertThat(result.getAnimalInformation().getCattleNo(), is("410002147460101")),
+                () -> assertThat(result.getAnimalInformation().getLsTypeNm(), is("한우")),
+                () -> assertThat(result.getFarmInformation().size(), is(5)),
+                () -> assertThat(result.getButcheryInformation().getGradeNm(), is("2")),
+                () -> assertThat(result.getProcessPlaceInformation().getProcessPlaceAddr(), is("경기도 안산시 단원구 화정동 꽃우물길")),
+                () -> assertThat(result.getInjectionInformation().getInjectiondayCnt(), is("접종 후 38일 경과")),
+                () -> assertThat(result.getInspectInformation().getInspectYn(), is("음성"))
         );
     }
 
@@ -58,11 +58,11 @@ class AnimalTraceImplTest {
 
         //then
         assertAll(
-                () -> assertThat(result.animalInformation().cattleNo(), is("410002147460101")),
-                () -> assertThat(result.animalInformation().lsTypeNm(), is("한우")),
-                () -> assertThat(result.animalInformation().farmNo(), is("292956")),
-                () -> assertThat(result.farmInformation().size(), is(0)),
-                () -> assertThat(result.butcheryInformation(), is(nullValue()))
+                () -> assertThat(result.getAnimalInformation().getCattleNo(), is("410002147460101")),
+                () -> assertThat(result.getAnimalInformation().getLsTypeNm(), is("한우")),
+                () -> assertThat(result.getAnimalInformation().getFarmNo(), is("292956")),
+                () -> assertThat(result.getFarmInformation().size(), is(0)),
+                () -> assertThat(result.getButcheryInformation(), is(nullValue()))
         );
     }
 
@@ -82,8 +82,8 @@ class AnimalTraceImplTest {
 
         //then
         assertAll(
-                () -> assertThat(result.animalInformation(), is(nullValue())),
-                () -> assertThat(result.butcheryInformation().gradeNm(), is("2"))
+                () -> assertThat(result.getAnimalInformation(), is(nullValue())),
+                () -> assertThat(result.getButcheryInformation().getGradeNm(), is("2"))
         );
 
     }
@@ -104,8 +104,8 @@ class AnimalTraceImplTest {
         MtraceRequestException mtraceRequestException =
                 assertThrows(MtraceRequestException.class, () -> sut.traceNoSearch(TEST_TRACE_NO));
         assertAll(
-                ()-> assertThat(mtraceRequestException.getMtraceErrorCode(),is("99")),
-                ()-> assertThat(mtraceRequestException.getMessage(),is("INVALID REQUEST PARAMETER ERROR."))
+                () -> assertThat(mtraceRequestException.getMtraceErrorCode(), is("99")),
+                () -> assertThat(mtraceRequestException.getMessage(), is("INVALID REQUEST PARAMETER ERROR."))
         );
     }
 }

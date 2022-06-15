@@ -26,6 +26,7 @@ import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -59,6 +60,11 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
      * 소/돼지/묶음 구분 xml tag name입니다.
      */
     private static final String TRACE_NO_TYPE = "traceNoType";
+
+    /**
+     * Element 조회시 NoSuchElementException 를 위한 Msg String 입니다.
+     */
+    private static final String NO_ELEMENT_EXCEPTION_MSG = "Element 값을 찾을수 없습니다.";
 
     /**
      * MtraceHttpClient 입니다.
@@ -137,7 +143,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
 
     private TraceResult responseConvert(final MtraceHttpResponse response)
             throws ParserConfigurationException, IOException, SAXException {
-        Document doc = new DocumentFactory().parse(response.body());
+        Document doc = new DocumentFactory().parse(response.getBody());
         assertSuccess(doc);
         NodeList items = doc.getElementsByTagName("item");
         Map<Integer, List<Element>> mappedByInfoType = new HashMap<>();
@@ -180,7 +186,9 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
         if (Objects.isNull(elements) || elements.isEmpty()) {
             return null;
         }
-        Element element = elements.stream().findFirst().orElseThrow();
+        Element element = elements.stream().findFirst().orElseThrow(
+                () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
+        );
         return new AnimalInformation(
                 ymdToInstant(getText(element.getElementsByTagName("birthYmd"))),
                 getTextOrNull(element.getElementsByTagName("cattleNo")),
@@ -208,14 +216,16 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
                 getText(element.getElementsByTagName("regType")),
                 ymdToInstant(getText(element.getElementsByTagName("regYmd"))),
                 getText(element.getElementsByTagName(TRACE_NO_TYPE))
-        )).toList();
+        )).collect(Collectors.toList());
     }
 
     private ButcheryInformation toButcheryInformation(@Nullable final List<Element> elements) {
         if (Objects.isNull(elements) || elements.isEmpty()) {
             return null;
         }
-        Element element = elements.stream().findFirst().orElseThrow();
+        Element element = elements.stream().findFirst().orElseThrow(
+                () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
+        );
         return new ButcheryInformation(
                 getText(element.getElementsByTagName("butcheryPlaceAddr")),
                 getText(element.getElementsByTagName("butcheryPlaceNm")),
@@ -231,7 +241,9 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
         if (Objects.isNull(elements) || elements.isEmpty()) {
             return null;
         }
-        Element element = elements.stream().findFirst().orElseThrow();
+        Element element = elements.stream().findFirst().orElseThrow(
+                () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
+        );
         return new ProcessPlaceInformation(
                 getText(element.getElementsByTagName("processPlaceAddr")),
                 getText(element.getElementsByTagName("processPlaceNm")),
@@ -244,7 +256,9 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
         if (Objects.isNull(elements) || elements.isEmpty()) {
             return null;
         }
-        Element element = elements.stream().findFirst().orElseThrow();
+        Element element = elements.stream().findFirst().orElseThrow(
+                () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
+        );
         return new InjectionInformation(
                 ymdToInstant(getText(element.getElementsByTagName("injectionYmd"))),
                 getText(element.getElementsByTagName("injectiondayCnt")),
@@ -258,7 +272,9 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
         if (Objects.isNull(elements) || elements.isEmpty()) {
             return null;
         }
-        Element element = elements.stream().findFirst().orElseThrow();
+        Element element = elements.stream().findFirst().orElseThrow(
+                () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
+        );
         return new InspectInformation(
                 ymdToInstant(getText(element.getElementsByTagName("inspectDt"))),
                 getText(element.getElementsByTagName("inspectYn")),

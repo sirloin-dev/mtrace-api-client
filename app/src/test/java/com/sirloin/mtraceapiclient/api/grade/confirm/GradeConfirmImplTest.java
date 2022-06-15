@@ -2,6 +2,7 @@ package com.sirloin.mtraceapiclient.api.grade.confirm;
 
 import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
 import com.sirloin.mtraceapiclient.api.grade.confirm.model.GradeConfirmInformation;
+import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
 import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,10 +41,10 @@ class GradeConfirmImplTest {
         //then
         Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay().toInstant(ZoneOffset.UTC);
         assertAll(
-                () -> assertThat(result.animalNo(), is(TEST_ANIMAL_NO)),
-                () -> assertThat(result.judgeKindNm(), is("소")),
-                () -> assertThat(result.issueNo(), is("0323-05240157")),
-                () -> assertThat(result.issueDate(), is(issueDate))
+                () -> assertThat(result.getAnimalNo(), is(TEST_ANIMAL_NO)),
+                () -> assertThat(result.getJudgeKindNm(), is("소")),
+                () -> assertThat(result.getIssueNo(), is("0323-05240157")),
+                () -> assertThat(result.getIssueDate(), is(issueDate))
         );
     }
 

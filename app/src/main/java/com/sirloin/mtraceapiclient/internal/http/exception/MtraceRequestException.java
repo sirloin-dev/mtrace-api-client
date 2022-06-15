@@ -1,12 +1,10 @@
 package com.sirloin.mtraceapiclient.internal.http.exception;
 
 import javax.annotation.Nonnull;
-import java.io.Serial;
 
 public final class MtraceRequestException extends RuntimeException {
-    @Serial
-    private static final long serialVersionUID = -2338626292552177481L;
 
+    private static final long serialVersionUID = 5034400802943484660L;
     /**
      * api 조회후 resultcode입니다.
      */
