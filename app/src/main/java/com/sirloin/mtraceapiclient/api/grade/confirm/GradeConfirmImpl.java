@@ -13,8 +13,6 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,12 +77,9 @@ final class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
                 getText(item.getElementsByTagName("judgeKindNm")),
                 getText(item.getElementsByTagName("abattCode")),
                 getText(item.getElementsByTagName("abattNm")),
-                LocalDate.parse(getText(item.getElementsByTagName("abattDate")))
-                        .atStartOfDay().toInstant(ZoneOffset.UTC),
-                LocalDate.parse(getText(item.getElementsByTagName("judgeDate"))).
-                        atStartOfDay().toInstant(ZoneOffset.UTC),
-                LocalDate.parse(getText(item.getElementsByTagName("issueDate")))
-                        .atStartOfDay().toInstant(ZoneOffset.UTC),
+                dateKstToInstant(item.getElementsByTagName("abattDate")),
+                dateKstToInstant(item.getElementsByTagName("judgeDate")),
+                dateKstToInstant(item.getElementsByTagName("issueDate")),
                 getText(item.getElementsByTagName("issueNo"))
         );
     }

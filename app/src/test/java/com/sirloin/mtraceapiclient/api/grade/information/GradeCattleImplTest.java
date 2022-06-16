@@ -6,9 +6,7 @@ import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestExceptio
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
+import java.time.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -36,7 +34,9 @@ class GradeCattleImplTest {
         //when
         CattleGradeInformation result = sut.grade(TEST_ISSUE_NO, TEST_ISSUE_DATE_STR);
         //then
-        Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay().toInstant(ZoneOffset.UTC);
+        ZonedDateTime issueDate = LocalDate.of(2022, 5, 24).atStartOfDay()
+                .atZone(ZoneId.of("Asia/Seoul"));
+
         assertAll(
                 () -> assertThat(result.getIssueNo(), is("0323-05240157")),
                 () -> assertThat(result.getIssueDate(), is(issueDate)),

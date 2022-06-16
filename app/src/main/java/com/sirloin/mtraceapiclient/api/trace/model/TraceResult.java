@@ -71,6 +71,7 @@ public class TraceResult {
         this.injectionInformation = injectionInformation;
         this.inspectInformation = inspectInformation;
     }
+
     /**
      * @return 조회한 동물의 개체의 정보.
      */
@@ -78,6 +79,7 @@ public class TraceResult {
     public AnimalInformation getAnimalInformation() {
         return animalInformation;
     }
+
     /**
      * @return 출생 등 신고정보.
      */
@@ -85,6 +87,7 @@ public class TraceResult {
     public List<FarmInformation> getFarmInformation() {
         return farmInformation;
     }
+
     /**
      * @return 도축장 정보.
      */
@@ -92,6 +95,7 @@ public class TraceResult {
     public ButcheryInformation getButcheryInformation() {
         return butcheryInformation;
     }
+
     /**
      * @return 포장처리 정보.
      */
@@ -99,6 +103,7 @@ public class TraceResult {
     public ProcessPlaceInformation getProcessPlaceInformation() {
         return processPlaceInformation;
     }
+
     /**
      * @return 백신접종 정보.
      */
@@ -106,11 +111,52 @@ public class TraceResult {
     public InjectionInformation getInjectionInformation() {
         return injectionInformation;
     }
+
     /**
      * @return 가축질병 검사 정보.
      */
     @Nullable
     public InspectInformation getInspectInformation() {
         return inspectInformation;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TraceResult that = (TraceResult) o;
+        return Objects.equals(animalInformation, that.animalInformation)
+                && farmInformation.equals(that.farmInformation)
+                && Objects.equals(butcheryInformation, that.butcheryInformation)
+                && Objects.equals(processPlaceInformation, that.processPlaceInformation)
+                && Objects.equals(injectionInformation, that.injectionInformation)
+                && Objects.equals(inspectInformation, that.inspectInformation);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                animalInformation,
+                farmInformation,
+                butcheryInformation,
+                processPlaceInformation,
+                injectionInformation,
+                inspectInformation
+        );
     }
 }

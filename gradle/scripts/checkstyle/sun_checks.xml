@@ -115,6 +115,7 @@
         <module name="AvoidStarImport">
             <property name="excludes" value="java.util.*"/>
             <property name="excludes" value="java.io.*"/>
+            <property name="excludes" value="java.time.*"/>
         </module>
         <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
         <module name="RedundantImport"/>

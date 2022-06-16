@@ -2,7 +2,8 @@ package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * 조회한 동물의 개체의 정보.
@@ -12,7 +13,7 @@ public class AnimalInformation {
      * 출생일자.
      */
     @Nonnull
-    private final Instant birthYmd;
+    private final ZonedDateTime birthYmd;
     /**
      * 소 개체번호.
      */
@@ -41,7 +42,7 @@ public class AnimalInformation {
      * 소의 종류.
      */
     @Nonnull
-    private  final String lsTypeNm;
+    private final String lsTypeNm;
     /**
      * 수입경과월.
      */
@@ -72,7 +73,7 @@ public class AnimalInformation {
      * @param traceNoType  소/돼지/묶음 구분.
      */
     public AnimalInformation(
-            final @Nonnull Instant birthYmd,
+            final @Nonnull ZonedDateTime birthYmd,
             final @Nullable String cattleNo,
             final @Nullable String pigNo,
             final @Nonnull String farmNo,
@@ -99,9 +100,10 @@ public class AnimalInformation {
      * @return 출생일자
      */
     @Nonnull
-    public Instant getBirthYmd() {
+    public ZonedDateTime getBirthYmd() {
         return birthYmd;
     }
+
     /**
      * @return 소 개체번호
      */
@@ -170,5 +172,53 @@ public class AnimalInformation {
     @Nonnull
     public String getTraceNoType() {
         return traceNoType;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AnimalInformation that = (AnimalInformation) o;
+        return infoType == that.infoType
+                && monthDiff == that.monthDiff
+                && birthYmd.equals(that.birthYmd)
+                && Objects.equals(cattleNo, that.cattleNo)
+                && Objects.equals(pigNo, that.pigNo)
+                && farmNo.equals(that.farmNo)
+                && farmUniqueNo.equals(that.farmUniqueNo)
+                && lsTypeNm.equals(that.lsTypeNm)
+                && sexNm.equals(that.sexNm)
+                && traceNoType.equals(that.traceNoType);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                birthYmd,
+                cattleNo,
+                pigNo,
+                farmNo,
+                farmUniqueNo,
+                infoType,
+                lsTypeNm,
+                monthDiff,
+                sexNm,
+                traceNoType
+        );
     }
 }

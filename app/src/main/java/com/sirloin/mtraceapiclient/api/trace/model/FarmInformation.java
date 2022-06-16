@@ -1,7 +1,8 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * 출생 등 신고정보.
@@ -35,7 +36,7 @@ public class FarmInformation {
      * 신고년월일 .
      */
     @Nonnull
-    private final Instant regYmd;
+    private final ZonedDateTime regYmd;
     /**
      * 소/돼지/묶음 구분.
      */
@@ -59,7 +60,7 @@ public class FarmInformation {
             @Nonnull final String farmerNm,
             final int infoType,
             @Nonnull final String regType,
-            @Nonnull final Instant regYmd,
+            @Nonnull final ZonedDateTime regYmd,
             @Nonnull final String traceNoType
     ) {
         this.farmAddr = farmAddr;
@@ -114,7 +115,7 @@ public class FarmInformation {
      * @return 신고년월일
      */
     @Nonnull
-    public Instant getRegYmd() {
+    public ZonedDateTime getRegYmd() {
         return regYmd;
     }
 
@@ -124,6 +125,40 @@ public class FarmInformation {
     @Nonnull
     public String getTraceNoType() {
         return traceNoType;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        FarmInformation that = (FarmInformation) o;
+        return infoType == that.infoType
+                && farmAddr.equals(that.farmAddr)
+                && farmNo.equals(that.farmNo)
+                && farmerNm.equals(that.farmerNm)
+                && regType.equals(that.regType)
+                && regYmd.equals(that.regYmd)
+                && traceNoType.equals(that.traceNoType);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(farmAddr, farmNo, farmerNm, infoType, regType, regYmd, traceNoType);
     }
 }
 

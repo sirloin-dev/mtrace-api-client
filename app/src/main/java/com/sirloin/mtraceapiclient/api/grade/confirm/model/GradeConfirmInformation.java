@@ -1,6 +1,7 @@
 package com.sirloin.mtraceapiclient.api.grade.confirm.model;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * 등급정보판정결과 확인서 정보.
@@ -29,15 +30,15 @@ public class GradeConfirmInformation {
     /**
      * 도축일자.
      */
-    private final Instant abattDate;
+    private final ZonedDateTime abattDate;
     /**
      * 판정일자.
      */
-    private final Instant judgeDate;
+    private final ZonedDateTime judgeDate;
     /**
      * 확인서발급일자.
      */
-    private final Instant issueDate;
+    private final ZonedDateTime issueDate;
     /**
      * 확인서발급번호.
      */
@@ -62,9 +63,9 @@ public class GradeConfirmInformation {
             final String judgeKindNm,
             final String abattCode,
             final String abattNm,
-            final Instant abattDate,
-            final Instant judgeDate,
-            final Instant issueDate,
+            final ZonedDateTime abattDate,
+            final ZonedDateTime judgeDate,
+            final ZonedDateTime issueDate,
             final String issueNo
     ) {
         this.animalNo = animalNo;
@@ -116,21 +117,21 @@ public class GradeConfirmInformation {
     /**
      * @return 도축일자.
      */
-    public Instant getAbattDate() {
+    public ZonedDateTime getAbattDate() {
         return abattDate;
     }
 
     /**
      * @return 판정일자.
      */
-    public Instant getJudgeDate() {
+    public ZonedDateTime getJudgeDate() {
         return judgeDate;
     }
 
     /**
      * @return 확인서발급일자.
      */
-    public Instant getIssueDate() {
+    public ZonedDateTime getIssueDate() {
         return issueDate;
     }
 
@@ -139,5 +140,43 @@ public class GradeConfirmInformation {
      */
     public String getIssueNo() {
         return issueNo;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GradeConfirmInformation that = (GradeConfirmInformation) o;
+        return Objects.equals(animalNo, that.animalNo)
+                && Objects.equals(judgeKindCd, that.judgeKindCd)
+                && Objects.equals(judgeKindNm, that.judgeKindNm)
+                && Objects.equals(abattCode, that.abattCode)
+                && Objects.equals(abattNm, that.abattNm)
+                && Objects.equals(abattDate, that.abattDate)
+                && Objects.equals(judgeDate, that.judgeDate)
+                && Objects.equals(issueDate, that.issueDate)
+                && Objects.equals(issueNo, that.issueNo);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                animalNo, judgeKindCd, judgeKindNm, abattCode, abattNm, abattDate, judgeDate, issueDate, issueNo
+        );
     }
 }

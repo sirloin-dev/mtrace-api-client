@@ -3,6 +3,7 @@ package com.sirloin.mtraceapiclient.internal.http.model;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -17,7 +18,7 @@ public class MtraceHttpRequest {
 
     /**
      * Http요청시 보낼 parameter.
-     *
+     * <p>
      * 외부에 접근을 노출할 이유가 없어 해당 경고를 무시합니다.
      */
     @SuppressWarnings("PMD.BeanMembersShouldSerialize")
@@ -26,7 +27,7 @@ public class MtraceHttpRequest {
     /**
      * 기본 생성자입니다.
      *
-     * @param url Http 요청을 할 url 주소입니다.
+     * @param url             Http 요청을 할 url 주소입니다.
      * @param queryParameters Http요청시 보낼 parameter입니다.
      */
     public MtraceHttpRequest(final String url, final Map<String, Object> queryParameters) {
@@ -57,4 +58,31 @@ public class MtraceHttpRequest {
         }
     }
 
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        MtraceHttpRequest that = (MtraceHttpRequest) o;
+        return Objects.equals(url, that.url) && Objects.equals(queryParameters, that.queryParameters);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(url, queryParameters);
+    }
 }

@@ -1,7 +1,8 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
 /**
  * 도축장 정보.
@@ -21,7 +22,7 @@ public class ButcheryInformation {
      * 도축일자.
      */
     @Nonnull
-    private final Instant butcheryYmd;
+    private final ZonedDateTime butcheryYmd;
     /**
      * 등급명.
      */
@@ -56,7 +57,7 @@ public class ButcheryInformation {
     public ButcheryInformation(
             @Nonnull final String butcheryPlaceAddr,
             @Nonnull final String butcheryPlaceNm,
-            @Nonnull final Instant butcheryYmd,
+            @Nonnull final ZonedDateTime butcheryYmd,
             @Nonnull final String gradeNm,
             final int infoType,
             @Nonnull final String inspectPassYn,
@@ -86,11 +87,12 @@ public class ButcheryInformation {
     public String getButcheryPlaceNm() {
         return butcheryPlaceNm;
     }
+
     /**
      * @return 도축일자
      */
     @Nonnull
-    public Instant getButcheryYmd() {
+    public ZonedDateTime getButcheryYmd() {
         return butcheryYmd;
     }
 
@@ -116,11 +118,54 @@ public class ButcheryInformation {
     public String getInspectPassYn() {
         return inspectPassYn;
     }
+
     /**
      * @return 소/돼지/묶음 구분.
      */
     @Nonnull
     public String getTraceNoType() {
         return traceNoType;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ButcheryInformation that = (ButcheryInformation) o;
+        return infoType == that.infoType
+                && butcheryPlaceAddr.equals(that.butcheryPlaceAddr)
+                && butcheryPlaceNm.equals(that.butcheryPlaceNm)
+                && butcheryYmd.equals(that.butcheryYmd)
+                && gradeNm.equals(that.gradeNm)
+                && inspectPassYn.equals(that.inspectPassYn)
+                && traceNoType.equals(that.traceNoType);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                butcheryPlaceAddr,
+                butcheryPlaceNm,
+                butcheryYmd,
+                gradeNm,
+                infoType,
+                inspectPassYn,
+                traceNoType
+        );
     }
 }
