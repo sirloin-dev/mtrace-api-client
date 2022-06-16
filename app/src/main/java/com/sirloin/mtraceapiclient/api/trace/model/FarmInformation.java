@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -36,7 +36,7 @@ public class FarmInformation {
      * 신고년월일 .
      */
     @Nonnull
-    private final Instant regYmd;
+    private final ZonedDateTime regYmd;
     /**
      * 소/돼지/묶음 구분.
      */
@@ -60,7 +60,7 @@ public class FarmInformation {
             @Nonnull final String farmerNm,
             final int infoType,
             @Nonnull final String regType,
-            @Nonnull final Instant regYmd,
+            @Nonnull final ZonedDateTime regYmd,
             @Nonnull final String traceNoType
     ) {
         this.farmAddr = farmAddr;
@@ -115,7 +115,7 @@ public class FarmInformation {
      * @return 신고년월일
      */
     @Nonnull
-    public Instant getRegYmd() {
+    public ZonedDateTime getRegYmd() {
         return regYmd;
     }
 

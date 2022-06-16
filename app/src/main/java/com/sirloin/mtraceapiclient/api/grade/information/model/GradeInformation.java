@@ -1,6 +1,6 @@
 package com.sirloin.mtraceapiclient.api.grade.information.model;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 
 /**
  * 등급판정 정보입니다. 각 동물별 공통 정보를 취합한 모델입니다.
@@ -13,7 +13,7 @@ public interface GradeInformation {
     /**
      * @return 발급일자
      */
-    Instant getIssueDate();
+    ZonedDateTime getIssueDate();
 
     /**
      * @return 발급번호
@@ -38,7 +38,7 @@ public interface GradeInformation {
     /**
      * @return 도축일자
      */
-    Instant getAbattDate();
+    ZonedDateTime getAbattDate();
 
     /**
      * @return 도축장명
@@ -48,7 +48,7 @@ public interface GradeInformation {
     /**
      * @return 등급판정일자
      */
-    Instant getJudgeDate();
+    ZonedDateTime getJudgeDate();
     /**
      * @return 도축장코드
      */

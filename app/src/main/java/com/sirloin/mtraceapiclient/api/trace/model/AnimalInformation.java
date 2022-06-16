@@ -2,7 +2,7 @@ package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -10,10 +10,10 @@ import java.util.Objects;
  */
 public class AnimalInformation {
     /**
-     * 출생일자. UTC 기준입니다.
+     * 출생일자.
      */
     @Nonnull
-    private final Instant birthYmd;
+    private final ZonedDateTime birthYmd;
     /**
      * 소 개체번호.
      */
@@ -73,7 +73,7 @@ public class AnimalInformation {
      * @param traceNoType  소/돼지/묶음 구분.
      */
     public AnimalInformation(
-            final @Nonnull Instant birthYmd,
+            final @Nonnull ZonedDateTime birthYmd,
             final @Nullable String cattleNo,
             final @Nullable String pigNo,
             final @Nonnull String farmNo,
@@ -97,10 +97,10 @@ public class AnimalInformation {
     }
 
     /**
-     * @return 출생일자 UTC 기준입니다.
+     * @return 출생일자
      */
     @Nonnull
-    public Instant getBirthYmd() {
+    public ZonedDateTime getBirthYmd() {
         return birthYmd;
     }
 
@@ -203,6 +203,7 @@ public class AnimalInformation {
 
     /**
      * 기본 해쉬코드.
+     *
      * @return hash
      */
     @Override

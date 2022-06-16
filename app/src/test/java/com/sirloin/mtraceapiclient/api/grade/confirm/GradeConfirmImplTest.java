@@ -7,9 +7,8 @@ import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestExceptio
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.util.Date;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -37,10 +36,9 @@ class GradeConfirmImplTest {
 
         //when
         GradeConfirmInformation result = sut.gradeConfirm(TEST_ANIMAL_NO);
-
         //then
-        Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay()
-                .toInstant(ZoneOffset.of("+09:00"));
+        ZonedDateTime issueDate = LocalDate.of(2022, 5, 24).atStartOfDay()
+                .atZone(ZoneId.of("Asia/Seoul"));
         assertAll(
                 () -> assertThat(result.getAnimalNo(), is(TEST_ANIMAL_NO)),
                 () -> assertThat(result.getJudgeKindNm(), is("소")),

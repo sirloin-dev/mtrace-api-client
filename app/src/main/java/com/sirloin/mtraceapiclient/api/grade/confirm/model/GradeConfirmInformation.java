@@ -1,6 +1,6 @@
 package com.sirloin.mtraceapiclient.api.grade.confirm.model;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -28,17 +28,17 @@ public class GradeConfirmInformation {
      */
     private final String abattNm;
     /**
-     * 도축일자. UTC 기준입니다.
+     * 도축일자.
      */
-    private final Instant abattDate;
+    private final ZonedDateTime abattDate;
     /**
-     * 판정일자. UTC 기준입니다.
+     * 판정일자.
      */
-    private final Instant judgeDate;
+    private final ZonedDateTime judgeDate;
     /**
-     * 확인서발급일자. UTC 기준입니다.
+     * 확인서발급일자.
      */
-    private final Instant issueDate;
+    private final ZonedDateTime issueDate;
     /**
      * 확인서발급번호.
      */
@@ -63,9 +63,9 @@ public class GradeConfirmInformation {
             final String judgeKindNm,
             final String abattCode,
             final String abattNm,
-            final Instant abattDate,
-            final Instant judgeDate,
-            final Instant issueDate,
+            final ZonedDateTime abattDate,
+            final ZonedDateTime judgeDate,
+            final ZonedDateTime issueDate,
             final String issueNo
     ) {
         this.animalNo = animalNo;
@@ -117,21 +117,21 @@ public class GradeConfirmInformation {
     /**
      * @return 도축일자.
      */
-    public Instant getAbattDate() {
+    public ZonedDateTime getAbattDate() {
         return abattDate;
     }
 
     /**
      * @return 판정일자.
      */
-    public Instant getJudgeDate() {
+    public ZonedDateTime getJudgeDate() {
         return judgeDate;
     }
 
     /**
      * @return 확인서발급일자.
      */
-    public Instant getIssueDate() {
+    public ZonedDateTime getIssueDate() {
         return issueDate;
     }
 
@@ -170,6 +170,7 @@ public class GradeConfirmInformation {
 
     /**
      * 기본 해쉬코드.
+     *
      * @return hash
      */
     @Override

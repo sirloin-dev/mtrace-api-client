@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -19,10 +19,10 @@ public class ButcheryInformation {
     @Nonnull
     private final String butcheryPlaceNm;
     /**
-     * 도축일자. UTC 기준입니다.
+     * 도축일자.
      */
     @Nonnull
-    private final Instant butcheryYmd;
+    private final ZonedDateTime butcheryYmd;
     /**
      * 등급명.
      */
@@ -57,7 +57,7 @@ public class ButcheryInformation {
     public ButcheryInformation(
             @Nonnull final String butcheryPlaceAddr,
             @Nonnull final String butcheryPlaceNm,
-            @Nonnull final Instant butcheryYmd,
+            @Nonnull final ZonedDateTime butcheryYmd,
             @Nonnull final String gradeNm,
             final int infoType,
             @Nonnull final String inspectPassYn,
@@ -92,7 +92,7 @@ public class ButcheryInformation {
      * @return 도축일자
      */
     @Nonnull
-    public Instant getButcheryYmd() {
+    public ZonedDateTime getButcheryYmd() {
         return butcheryYmd;
     }
 

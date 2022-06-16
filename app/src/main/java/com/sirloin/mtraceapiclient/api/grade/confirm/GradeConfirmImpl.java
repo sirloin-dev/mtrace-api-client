@@ -77,9 +77,9 @@ final class GradeConfirmImpl implements GradeConfirm, MtraceXmlParserMixin {
                 getText(item.getElementsByTagName("judgeKindNm")),
                 getText(item.getElementsByTagName("abattCode")),
                 getText(item.getElementsByTagName("abattNm")),
-                dateToKstInstant(item.getElementsByTagName("abattDate")),
-                dateToKstInstant(item.getElementsByTagName("judgeDate")),
-                dateToKstInstant(item.getElementsByTagName("issueDate")),
+                dateKstToInstant(item.getElementsByTagName("abattDate")),
+                dateKstToInstant(item.getElementsByTagName("judgeDate")),
+                dateKstToInstant(item.getElementsByTagName("issueDate")),
                 getText(item.getElementsByTagName("issueNo"))
         );
     }

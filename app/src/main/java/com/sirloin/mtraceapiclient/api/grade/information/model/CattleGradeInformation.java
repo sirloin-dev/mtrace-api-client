@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.grade.information.model;
 
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -9,9 +9,9 @@ import java.util.Objects;
  */
 public class CattleGradeInformation implements GradeInformation {
     /**
-     * 발급일자. UTC 기준입니다.
+     * 발급일자.
      */
-    private final Instant issueDate;
+    private final ZonedDateTime issueDate;
     /**
      * 발급번호.
      */
@@ -29,17 +29,17 @@ public class CattleGradeInformation implements GradeInformation {
      */
     private final String raterNm;
     /**
-     * 도축일자. UTC 기준입니다.
+     * 도축일자.
      */
-    private final Instant abattDate;
+    private final ZonedDateTime abattDate;
     /**
      * 도축장명.
      */
     private final String abattNm;
     /**
-     * 등급판정일자. UTC 기준입니다.
+     * 등급판정일자.
      */
-    private final Instant judgeDate;
+    private final ZonedDateTime judgeDate;
     /**
      * 도축장코드.
      */
@@ -207,14 +207,14 @@ public class CattleGradeInformation implements GradeInformation {
      */
     @SuppressWarnings("checkstyle:parameternumber") // api의 parameter의 갯수가 많아 해당 경고를 무시합니다.
     public CattleGradeInformation(
-            final Instant issueDate,
+            final ZonedDateTime issueDate,
             final String issueNo,
             final String judgeKindCd,
             final String raterCode,
             final String raterNm,
-            final Instant abattDate,
+            final ZonedDateTime abattDate,
             final String abattNm,
-            final Instant judgeDate,
+            final ZonedDateTime judgeDate,
             final String abattCode,
             final String abattAddr,
             final String abattTelNo,
@@ -291,7 +291,7 @@ public class CattleGradeInformation implements GradeInformation {
      * @return 발급일자
      */
     @Override
-    public Instant getIssueDate() {
+    public ZonedDateTime getIssueDate() {
         return issueDate;
     }
 
@@ -331,7 +331,7 @@ public class CattleGradeInformation implements GradeInformation {
      * @return 도축일자
      */
     @Override
-    public Instant getAbattDate() {
+    public ZonedDateTime getAbattDate() {
         return abattDate;
     }
 
@@ -347,7 +347,7 @@ public class CattleGradeInformation implements GradeInformation {
      * @return 등급판정일자
      */
     @Override
-    public Instant getJudgeDate() {
+    public ZonedDateTime getJudgeDate() {
         return judgeDate;
     }
 

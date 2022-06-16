@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -9,10 +9,10 @@ import java.util.Objects;
  */
 public class InspectInformation {
     /**
-     * 브루셀라 검사최종일자. UTC 기준입니다.
+     * 브루셀라 검사최종일자.
      */
     @Nonnull
-    private final Instant inspectDt;
+    private final ZonedDateTime inspectDt;
     /**
      * 음성 or 양성.
      */
@@ -37,7 +37,7 @@ public class InspectInformation {
      * @param traceNoType 소/돼지/묶음 구분
      */
     public InspectInformation(
-            @Nonnull final Instant inspectDt,
+            @Nonnull final ZonedDateTime inspectDt,
             @Nonnull final String inspectYn,
             final int infoType,
             @Nonnull final String traceNoType
@@ -52,7 +52,7 @@ public class InspectInformation {
      * @return 브루셀라 검사최종일자
      */
     @Nonnull
-    public Instant getInspectDt() {
+    public ZonedDateTime getInspectDt() {
         return inspectDt;
     }
 

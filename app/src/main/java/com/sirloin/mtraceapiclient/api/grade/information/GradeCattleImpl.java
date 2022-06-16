@@ -79,14 +79,14 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
         assertSuccess(doc);
         Element item = getFirstElement("item", doc);
         return new CattleGradeInformation(
-                dateToKstInstant(item.getElementsByTagName("issueDate")),
+                dateKstToInstant(item.getElementsByTagName("issueDate")),
                 getText(item.getElementsByTagName("issueNo")),
                 getText(item.getElementsByTagName("judgeKindCd")),
                 getText(item.getElementsByTagName("raterCode")),
                 getText(item.getElementsByTagName("raterNm")),
-                dateToKstInstant(item.getElementsByTagName("abattDate")),
+                dateKstToInstant(item.getElementsByTagName("abattDate")),
                 getTextOrNull(item.getElementsByTagName("abattNm")),
-                dateToKstInstant(item.getElementsByTagName("judgeDate")),
+                dateKstToInstant(item.getElementsByTagName("judgeDate")),
                 getTextOrNull(item.getElementsByTagName("abattCode")),
                 getTextOrNull(item.getElementsByTagName("abattAddr")),
                 getTextOrNull(item.getElementsByTagName("abattTelNo")),

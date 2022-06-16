@@ -1,7 +1,7 @@
 package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
@@ -9,10 +9,10 @@ import java.util.Objects;
  */
 public class InjectionInformation {
     /**
-     * 구제역 예방접종최종일자. UTC 기준입니다.
+     * 구제역 예방접종최종일자.
      */
     @Nonnull
-    private final Instant injectionYmd;
+    private final ZonedDateTime injectionYmd;
     /**
      * 구제역 백신접종경과일.
      */
@@ -44,7 +44,7 @@ public class InjectionInformation {
      * @param traceNoType     소/돼지/묶음 구분
      */
     public InjectionInformation(
-            @Nonnull final Instant injectionYmd,
+            @Nonnull final ZonedDateTime injectionYmd,
             @Nonnull final String injectiondayCnt,
             @Nonnull final String vaccineorder,
             final int infoType,
@@ -61,7 +61,7 @@ public class InjectionInformation {
      * @return 구제역 예방접종최종일자.
      */
     @Nonnull
-    public Instant getInjectionYmd() {
+    public ZonedDateTime getInjectionYmd() {
         return injectionYmd;
     }
 
