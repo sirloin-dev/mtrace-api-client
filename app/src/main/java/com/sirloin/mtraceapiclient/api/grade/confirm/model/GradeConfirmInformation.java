@@ -1,6 +1,7 @@
 package com.sirloin.mtraceapiclient.api.grade.confirm.model;
 
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * 등급정보판정결과 확인서 정보.
@@ -27,15 +28,15 @@ public class GradeConfirmInformation {
      */
     private final String abattNm;
     /**
-     * 도축일자.
+     * 도축일자. UTC 기준입니다.
      */
     private final Instant abattDate;
     /**
-     * 판정일자.
+     * 판정일자. UTC 기준입니다.
      */
     private final Instant judgeDate;
     /**
-     * 확인서발급일자.
+     * 확인서발급일자. UTC 기준입니다.
      */
     private final Instant issueDate;
     /**
@@ -139,5 +140,42 @@ public class GradeConfirmInformation {
      */
     public String getIssueNo() {
         return issueNo;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GradeConfirmInformation that = (GradeConfirmInformation) o;
+        return Objects.equals(animalNo, that.animalNo)
+                && Objects.equals(judgeKindCd, that.judgeKindCd)
+                && Objects.equals(judgeKindNm, that.judgeKindNm)
+                && Objects.equals(abattCode, that.abattCode)
+                && Objects.equals(abattNm, that.abattNm)
+                && Objects.equals(abattDate, that.abattDate)
+                && Objects.equals(judgeDate, that.judgeDate)
+                && Objects.equals(issueDate, that.issueDate)
+                && Objects.equals(issueNo, that.issueNo);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                animalNo, judgeKindCd, judgeKindNm, abattCode, abattNm, abattDate, judgeDate, issueDate, issueNo
+        );
     }
 }

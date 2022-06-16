@@ -12,8 +12,6 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,17 +79,14 @@ final class GradeCattleImpl implements Grade<CattleGradeInformation>, MtraceXmlP
         assertSuccess(doc);
         Element item = getFirstElement("item", doc);
         return new CattleGradeInformation(
-                LocalDate.parse(getText(item.getElementsByTagName("issueDate")))
-                        .atStartOfDay().toInstant(ZoneOffset.UTC),
+                dateToKstInstant(item.getElementsByTagName("issueDate")),
                 getText(item.getElementsByTagName("issueNo")),
                 getText(item.getElementsByTagName("judgeKindCd")),
                 getText(item.getElementsByTagName("raterCode")),
                 getText(item.getElementsByTagName("raterNm")),
-                LocalDate.parse(getText(item.getElementsByTagName("abattDate")))
-                        .atStartOfDay().toInstant(ZoneOffset.UTC),
+                dateToKstInstant(item.getElementsByTagName("abattDate")),
                 getTextOrNull(item.getElementsByTagName("abattNm")),
-                LocalDate.parse(getText(item.getElementsByTagName("judgeDate")))
-                        .atStartOfDay().toInstant(ZoneOffset.UTC),
+                dateToKstInstant(item.getElementsByTagName("judgeDate")),
                 getTextOrNull(item.getElementsByTagName("abattCode")),
                 getTextOrNull(item.getElementsByTagName("abattAddr")),
                 getTextOrNull(item.getElementsByTagName("abattTelNo")),

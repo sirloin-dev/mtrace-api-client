@@ -2,13 +2,14 @@ package com.sirloin.mtraceapiclient.api.grade.information.model;
 
 
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * 소 등급 판정 정보입니다.
  */
 public class CattleGradeInformation implements GradeInformation {
     /**
-     * 발급일자.
+     * 발급일자. UTC 기준입니다.
      */
     private final Instant issueDate;
     /**
@@ -28,7 +29,7 @@ public class CattleGradeInformation implements GradeInformation {
      */
     private final String raterNm;
     /**
-     * 도축일자.
+     * 도축일자. UTC 기준입니다.
      */
     private final Instant abattDate;
     /**
@@ -36,7 +37,7 @@ public class CattleGradeInformation implements GradeInformation {
      */
     private final String abattNm;
     /**
-     * 등급판정일자.
+     * 등급판정일자. UTC 기준입니다.
      */
     private final Instant judgeDate;
     /**
@@ -575,5 +576,109 @@ public class CattleGradeInformation implements GradeInformation {
      */
     public String getBirthMonth() {
         return birthMonth;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CattleGradeInformation that = (CattleGradeInformation) o;
+        return issueCnt == that.issueCnt
+                && Objects.equals(issueDate, that.issueDate)
+                && Objects.equals(issueNo, that.issueNo)
+                && Objects.equals(judgeKindCd, that.judgeKindCd)
+                && Objects.equals(raterCode, that.raterCode)
+                && Objects.equals(raterNm, that.raterNm)
+                && Objects.equals(abattDate, that.abattDate)
+                && Objects.equals(abattNm, that.abattNm)
+                && Objects.equals(judgeDate, that.judgeDate)
+                && Objects.equals(abattCode, that.abattCode)
+                && Objects.equals(abattAddr, that.abattAddr)
+                && Objects.equals(abattTelNo, that.abattTelNo)
+                && Objects.equals(reqUserNm, that.reqUserNm)
+                && Objects.equals(reqRegNo, that.reqRegNo)
+                && Objects.equals(reqComNm, that.reqComNm)
+                && Objects.equals(reqAddr, that.reqAddr)
+                && Objects.equals(reqTelNo, that.reqTelNo)
+                && Objects.equals(liveStockNm, that.liveStockNm)
+                && Objects.equals(abattFno, that.abattFno)
+                && Objects.equals(abattTno, that.abattTno)
+                && Objects.equals(judgeBreedNm, that.judgeBreedNm)
+                && Objects.equals(judgeSexNm, that.judgeSexNm)
+                && Objects.equals(weight, that.weight)
+                && Objects.equals(gradeCd, that.gradeCd)
+                && Objects.equals(gradeNm, that.gradeNm)
+                && Objects.equals(costAmt, that.costAmt)
+                && Objects.equals(windex, that.windex)
+                && Objects.equals(qgrade, that.qgrade)
+                && Objects.equals(wgrade, that.wgrade)
+                && Objects.equals(cattleNo, that.cattleNo)
+                && Objects.equals(backfat, that.backfat)
+                && Objects.equals(rea, that.rea)
+                && Objects.equals(yuksak, that.yuksak)
+                && Objects.equals(fatsak, that.fatsak)
+                && Objects.equals(growth, that.growth)
+                && Objects.equals(tissue, that.tissue)
+                && Objects.equals(insfat, that.insfat)
+                && Objects.equals(birthMonth, that.birthMonth);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                issueDate,
+                issueNo,
+                judgeKindCd,
+                raterCode,
+                raterNm,
+                abattDate,
+                abattNm,
+                judgeDate,
+                abattCode,
+                abattAddr,
+                abattTelNo,
+                reqUserNm,
+                reqRegNo,
+                reqComNm,
+                reqAddr,
+                reqTelNo,
+                liveStockNm,
+                abattFno,
+                abattTno,
+                judgeBreedNm,
+                judgeSexNm,
+                weight,
+                gradeCd,
+                gradeNm,
+                costAmt,
+                windex,
+                qgrade,
+                wgrade,
+                issueCnt,
+                cattleNo,
+                backfat,
+                rea,
+                yuksak,
+                fatsak,
+                growth,
+                tissue,
+                insfat,
+                birthMonth
+        );
     }
 }

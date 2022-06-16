@@ -39,7 +39,8 @@ class GradeConfirmImplTest {
         GradeConfirmInformation result = sut.gradeConfirm(TEST_ANIMAL_NO);
 
         //then
-        Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay().toInstant(ZoneOffset.UTC);
+        Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay()
+                .toInstant(ZoneOffset.of("+09:00"));
         assertAll(
                 () -> assertThat(result.getAnimalNo(), is(TEST_ANIMAL_NO)),
                 () -> assertThat(result.getJudgeKindNm(), is("소")),

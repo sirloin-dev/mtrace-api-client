@@ -8,6 +8,10 @@ import org.w3c.dom.NodeList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 public interface MtraceXmlParserMixin {
 
@@ -80,4 +84,37 @@ public interface MtraceXmlParserMixin {
         Node node = nodeList.item(0);
         return node != null ? node.getTextContent() : null;
     }
+
+    /**
+     * @return kst 시간으로 ZoneOffset을 설정합니다.
+     */
+    default ZoneOffset kst() {
+        return ZoneOffset.of("+09:00:00");
+    }
+
+    /**
+     * ymd형식의 노드를 Instant로 변환합니다.
+     *
+     * @param nodeList 변환할 데이터
+     * @return kst -> utc instant
+     */
+    default Instant ymdToKstInstant(final NodeList nodeList) {
+        final String ymdPattern = "yyyyMMdd";
+        return LocalDate.parse(getText(nodeList), DateTimeFormatter.ofPattern(ymdPattern))
+                .atStartOfDay()
+                .toInstant(kst());
+    }
+
+    /**
+     * date 형식의 노드를 Instant로 변환합니다.
+     *
+     * @param nodeList 변환할 데이터
+     * @return kst -> utc instant
+     */
+    default Instant dateToKstInstant(final NodeList nodeList) {
+        return LocalDate.parse(getText(nodeList))
+                .atStartOfDay()
+                .toInstant(kst());
+    }
+
 }

@@ -21,10 +21,6 @@ import org.xml.sax.SAXException;
 import javax.annotation.Nullable;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -176,12 +172,6 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
         return elements;
     }
 
-    private static Instant ymdToInstant(final String ymdText) {
-        return LocalDate.parse(ymdText, DateTimeFormatter.ofPattern(YMD_PATTERN))
-                .atStartOfDay()
-                .toInstant(ZoneOffset.UTC);
-    }
-
     private AnimalInformation toAnimalInformation(final List<Element> elements) {
         if (Objects.isNull(elements) || elements.isEmpty()) {
             return null;
@@ -190,7 +180,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
                 () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
         );
         return new AnimalInformation(
-                ymdToInstant(getText(element.getElementsByTagName("birthYmd"))),
+                ymdToKstInstant(element.getElementsByTagName("birthYmd")),
                 getTextOrNull(element.getElementsByTagName("cattleNo")),
                 getTextOrNull(element.getElementsByTagName("pigNo")),
                 getText(element.getElementsByTagName("farmNo")),
@@ -214,7 +204,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
                 getText(element.getElementsByTagName("farmerNm")),
                 Integer.parseInt(getText(element.getElementsByTagName(INFO_TYPE))),
                 getText(element.getElementsByTagName("regType")),
-                ymdToInstant(getText(element.getElementsByTagName("regYmd"))),
+                ymdToKstInstant(element.getElementsByTagName("regYmd")),
                 getText(element.getElementsByTagName(TRACE_NO_TYPE))
         )).collect(Collectors.toList());
     }
@@ -229,7 +219,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
         return new ButcheryInformation(
                 getText(element.getElementsByTagName("butcheryPlaceAddr")),
                 getText(element.getElementsByTagName("butcheryPlaceNm")),
-                ymdToInstant(getText(element.getElementsByTagName("butcheryYmd"))),
+                ymdToKstInstant(element.getElementsByTagName("butcheryYmd")),
                 getText(element.getElementsByTagName("gradeNm")),
                 Integer.parseInt(getText(element.getElementsByTagName(INFO_TYPE))),
                 getText(element.getElementsByTagName("inspectPassYn")),
@@ -260,7 +250,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
                 () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
         );
         return new InjectionInformation(
-                ymdToInstant(getText(element.getElementsByTagName("injectionYmd"))),
+                ymdToKstInstant(element.getElementsByTagName("injectionYmd")),
                 getText(element.getElementsByTagName("injectiondayCnt")),
                 getText(element.getElementsByTagName("vaccineorder")),
                 Integer.parseInt(getText(element.getElementsByTagName(INFO_TYPE))),
@@ -276,7 +266,7 @@ final class AnimalTraceImpl implements AnimalTrace, MtraceXmlParserMixin {
                 () -> new NoSuchElementException(NO_ELEMENT_EXCEPTION_MSG)
         );
         return new InspectInformation(
-                ymdToInstant(getText(element.getElementsByTagName("inspectDt"))),
+                ymdToKstInstant(element.getElementsByTagName("inspectDt")),
                 getText(element.getElementsByTagName("inspectYn")),
                 Integer.parseInt(getText(element.getElementsByTagName(INFO_TYPE))),
                 getText(element.getElementsByTagName(TRACE_NO_TYPE))

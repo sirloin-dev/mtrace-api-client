@@ -2,13 +2,14 @@ package com.sirloin.mtraceapiclient.api.trace.model;
 
 import javax.annotation.Nonnull;
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  * 가축질병 검사 정보.
  */
 public class InspectInformation {
     /**
-     * 브루셀라 검사최종일자.
+     * 브루셀라 검사최종일자. UTC 기준입니다.
      */
     @Nonnull
     private final Instant inspectDt;
@@ -76,5 +77,36 @@ public class InspectInformation {
     @Nonnull
     public String getTraceNoType() {
         return traceNoType;
+    }
+
+    /**
+     * 기본 eq and hashcode.
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectInformation that = (InspectInformation) o;
+        return infoType == that.infoType
+                && inspectDt.equals(that.inspectDt)
+                && inspectYn.equals(that.inspectYn)
+                && traceNoType.equals(that.traceNoType);
+    }
+
+    /**
+     * 기본 해쉬코드.
+     *
+     * @return hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(inspectDt, inspectYn, infoType, traceNoType);
     }
 }

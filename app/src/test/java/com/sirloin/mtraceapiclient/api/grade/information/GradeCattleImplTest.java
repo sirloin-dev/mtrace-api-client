@@ -36,7 +36,9 @@ class GradeCattleImplTest {
         //when
         CattleGradeInformation result = sut.grade(TEST_ISSUE_NO, TEST_ISSUE_DATE_STR);
         //then
-        Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay().toInstant(ZoneOffset.UTC);
+        Instant issueDate = LocalDate.of(2022, 5, 24).atStartOfDay()
+                .toInstant(ZoneOffset.of("+09:00"));
+
         assertAll(
                 () -> assertThat(result.getIssueNo(), is("0323-05240157")),
                 () -> assertThat(result.getIssueDate(), is(issueDate)),
