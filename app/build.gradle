@@ -2,6 +2,6 @@
  * mtrace-api-client
  * Distributed under MIT licence
  */
-version "0.0.1"
+version "1.0.4"
 
 apply from: "${project.rootDir}/gradle/scripts/mavenPublishing.gradle"

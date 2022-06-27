@@ -1,16 +1,18 @@
 package com.sirloin.mtraceapiclient.api.trace;
 
+import com.sirloin.mtraceapiclient.api.fixture.MockMtraceHttpClientImpl;
+import com.sirloin.mtraceapiclient.api.trace.model.TraceResult;
 import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
-import com.sirloin.mtraceapiclient.api.trace.model.TraceResult;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SuppressWarnings({"JavadocVariable", "MagicNumber"})
 class AnimalTraceImplTest {
     private static final String TEST_TRACE_NO = "002147460101";
     private static final String TEST_SERVICE_KEY = "";
@@ -45,7 +47,7 @@ class AnimalTraceImplTest {
 
     @DisplayName("통합이력정보를 조회합니다. 1번 옵션(개체정보)의 정보만 가져옵니다. ")
     @Test
-    void callTraceNoSearch_optionNo() throws Exception {
+    void callTraceNoSearchOptionNo() throws Exception {
         //given
         sut = new AnimalTraceImpl(
                 new MockMtraceHttpClientImpl(
@@ -68,7 +70,7 @@ class AnimalTraceImplTest {
 
     @DisplayName("통합이력정보를 조회합니다. 사업장번호로 검색후 3번 옵션(도축장)의 정보를 가져옵니다.")
     @Test
-    void callTraceNoSearch_optionNo_and_corpNo() throws Exception {
+    void callTraceNoSearchOptionNoAndCorpNo() throws Exception {
         //given
         sut = new AnimalTraceImpl(
                 new MockMtraceHttpClientImpl(
@@ -90,7 +92,7 @@ class AnimalTraceImplTest {
 
     @DisplayName("통합이력정보 조회에 실패합니다.")
     @Test
-    void callTraceNoSearch_fail() throws Exception {
+    void callTraceNoSearchFail() {
         //given
         sut = new AnimalTraceImpl(
                 new MockMtraceHttpClientImpl(

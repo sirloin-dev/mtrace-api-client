@@ -1,4 +1,4 @@
-package com.sirloin.mtraceapiclient.api.fixtrue;
+package com.sirloin.mtraceapiclient.api.fixture;
 
 import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
 import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpMethod;
@@ -7,7 +7,7 @@ import com.sirloin.mtraceapiclient.internal.http.model.MtraceHttpResponse;
 
 import java.io.InputStream;
 
-
+@SuppressWarnings({"MissingJavadocMethod", "JavadocVariable", "MagicNumber"})
 public final class MockMtraceHttpClientImpl implements MtraceHttpClient {
     private final InputStream responseBody;
 
@@ -19,4 +19,3 @@ public final class MockMtraceHttpClientImpl implements MtraceHttpClient {
         this.responseBody = responseBody;
     }
 }
-

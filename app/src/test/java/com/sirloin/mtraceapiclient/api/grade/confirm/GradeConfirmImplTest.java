@@ -1,23 +1,22 @@
 package com.sirloin.mtraceapiclient.api.grade.confirm;
 
-import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
+import com.sirloin.mtraceapiclient.api.fixture.MockMtraceHttpClientImpl;
 import com.sirloin.mtraceapiclient.api.grade.confirm.model.GradeConfirmInformation;
-import com.sirloin.mtraceapiclient.internal.http.MtraceHttpClient;
 import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
+@SuppressWarnings({"JavadocVariable", "MagicNumber"})
 class GradeConfirmImplTest {
-
     private GradeConfirm sut;
 
     private static final String TEST_ANIMAL_NO = "002147460101";
@@ -36,6 +35,7 @@ class GradeConfirmImplTest {
 
         //when
         GradeConfirmInformation result = sut.gradeConfirm(TEST_ANIMAL_NO);
+
         //then
         ZonedDateTime issueDate = LocalDate.of(2022, 5, 24).atStartOfDay()
                 .atZone(ZoneId.of("Asia/Seoul"));
@@ -49,7 +49,7 @@ class GradeConfirmImplTest {
 
     @DisplayName("소 개체정보의 등급판정 결과를 조회에 실패합니다.")
     @Test
-    void gradeConfirm_fail() throws Exception {
+    void testGradeConfirmFail() {
         //given
         sut = new GradeConfirmImpl(
                 new MockMtraceHttpClientImpl(
@@ -58,13 +58,14 @@ class GradeConfirmImplTest {
                 TEST_SERVICE_KEY
         );
 
-        //when //then
+        //when
         MtraceRequestException mtraceRequestException =
                 assertThrows(MtraceRequestException.class, () -> sut.gradeConfirm(TEST_ANIMAL_NO));
+
+        //then
         assertAll(
-                ()-> assertThat(mtraceRequestException.getMtraceErrorCode(),is("99")),
-                ()-> assertThat(mtraceRequestException.getMessage(),is("INVALID REQUEST PARAMETER ERROR."))
+                () -> assertThat(mtraceRequestException.getMtraceErrorCode(), is("99")),
+                () -> assertThat(mtraceRequestException.getMessage(), is("INVALID REQUEST PARAMETER ERROR."))
         );
     }
-
 }

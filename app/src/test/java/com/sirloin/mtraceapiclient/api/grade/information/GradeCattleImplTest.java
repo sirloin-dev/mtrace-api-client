@@ -1,19 +1,22 @@
 package com.sirloin.mtraceapiclient.api.grade.information;
 
-import com.sirloin.mtraceapiclient.api.fixtrue.MockMtraceHttpClientImpl;
+import com.sirloin.mtraceapiclient.api.fixture.MockMtraceHttpClientImpl;
 import com.sirloin.mtraceapiclient.api.grade.information.model.CattleGradeInformation;
 import com.sirloin.mtraceapiclient.internal.http.exception.MtraceRequestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SuppressWarnings({"JavadocVariable", "MagicNumber"})
 class GradeCattleImplTest {
-
     private GradeCattleImpl sut;
 
     private static final String TEST_ISSUE_DATE_STR = "2022-05-24";
@@ -49,7 +52,7 @@ class GradeCattleImplTest {
 
     @DisplayName("소의 등급판정결과 정보 조회에 실패합니다.")
     @Test
-    void grade_fail() throws Exception {
+    void testGradeFail() {
         //given
         sut = new GradeCattleImpl(
                 new MockMtraceHttpClientImpl(

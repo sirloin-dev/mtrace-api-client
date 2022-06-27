@@ -6,4 +6,5 @@ apply plugin: "checkstyle"
 
 checkstyle {
     configFile = new File("$rootDir/gradle/scripts/checkstyle/sun_checks.xml")
+    configProperties = [ configDir: "$rootDir/gradle/scripts/checkstyle/" ]
 }
