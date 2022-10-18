@@ -99,7 +99,7 @@ public interface MtraceXmlParserMixin {
      */
     default ZonedDateTime ymdToKstZonedDateTime(final NodeList nodeList) {
         final String ymdPattern = "yyyyMMdd";
-        String value = getTextOrNull(nodeList);
+        final String value = getTextOrNull(nodeList);
         if (Objects.isNull(value)) {
             return null;
         } else {
@@ -117,7 +117,7 @@ public interface MtraceXmlParserMixin {
      * @return kst -> utc instant
      */
     default ZonedDateTime dateKstToInstant(final NodeList nodeList) {
-        String value = getTextOrNull(nodeList);
+        final String value = getTextOrNull(nodeList);
         if (Objects.isNull(value)) {
             return null;
         } else {
