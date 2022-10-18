@@ -10,6 +10,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public interface MtraceXmlParserMixin {
 
@@ -98,9 +99,15 @@ public interface MtraceXmlParserMixin {
      */
     default ZonedDateTime ymdToKstZonedDateTime(final NodeList nodeList) {
         final String ymdPattern = "yyyyMMdd";
-        return LocalDate.parse(getText(nodeList), DateTimeFormatter.ofPattern(ymdPattern))
-                .atStartOfDay()
-                .atZone(kst());
+        final String value = getTextOrNull(nodeList);
+        if (Objects.isNull(value)) {
+            return null;
+        } else {
+            return LocalDate.parse(value, DateTimeFormatter.ofPattern(ymdPattern))
+                    .atStartOfDay()
+                    .atZone(kst());
+        }
+
     }
 
     /**
@@ -110,9 +117,14 @@ public interface MtraceXmlParserMixin {
      * @return kst -> utc instant
      */
     default ZonedDateTime dateKstToInstant(final NodeList nodeList) {
-        return LocalDate.parse(getText(nodeList))
-                .atStartOfDay()
-                .atZone(kst());
+        final String value = getTextOrNull(nodeList);
+        if (Objects.isNull(value)) {
+            return null;
+        } else {
+            return LocalDate.parse(value)
+                    .atStartOfDay()
+                    .atZone(kst());
+        }
     }
 
 }
