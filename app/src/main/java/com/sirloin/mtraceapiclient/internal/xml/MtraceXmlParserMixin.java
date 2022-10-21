@@ -98,11 +98,11 @@ public interface MtraceXmlParserMixin {
      * @return kst -> utc instant
      */
     default ZonedDateTime ymdToKstZonedDateTime(final NodeList nodeList) {
-        final String ymdPattern = "yyyyMMdd";
         final String value = getTextOrNull(nodeList);
         if (Objects.isNull(value)) {
             return null;
         } else {
+            final String ymdPattern = "yyyyMMdd";
             return LocalDate.parse(value, DateTimeFormatter.ofPattern(ymdPattern))
                     .atStartOfDay()
                     .atZone(kst());
