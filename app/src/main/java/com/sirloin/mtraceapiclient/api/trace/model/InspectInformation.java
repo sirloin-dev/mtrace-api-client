@@ -11,7 +11,6 @@ public class InspectInformation {
     /**
      * 브루셀라 검사최종일자.
      */
-    @Nonnull
     private final ZonedDateTime inspectDt;
     /**
      * 음성 or 양성.
@@ -37,7 +36,7 @@ public class InspectInformation {
      * @param traceNoType 소/돼지/묶음 구분
      */
     public InspectInformation(
-            @Nonnull final ZonedDateTime inspectDt,
+            final ZonedDateTime inspectDt,
             @Nonnull final String inspectYn,
             final int infoType,
             @Nonnull final String traceNoType
@@ -51,7 +50,6 @@ public class InspectInformation {
     /**
      * @return 브루셀라 검사최종일자
      */
-    @Nonnull
     public ZonedDateTime getInspectDt() {
         return inspectDt;
     }
